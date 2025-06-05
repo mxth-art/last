@@ -8,20 +8,21 @@ const AboutSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [
     {
-      src: "https://ik.imageKit.io/jacw2jgvs/la43-listing.jpg?updatedAt=1747316422127",
-      alt: "Restaurant interior"
+      src: "src/assests/about us pic/For aboout  2 chicken.jpg",
+      alt: "Traditional South Indian chicken dish"
+    },
+    
+    {
+      src: "src/assests/about us pic/For about 1.jpg",
+      alt: "Restaurant ambiance"
     },
     {
-      src: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&h=600&fit=crop",
-      alt: "Traditional South Indian dishes"
+      src: "src/assests/about us pic/For about fish 4.jpg",
+      alt: "Fresh South Indian fish curry"
     },
     {
-      src: "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=800&h=600&fit=crop",
-      alt: "Chef preparing food"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&h=600&fit=crop",
-      alt: "Spices and ingredients"
+      src: "src/assests/about us pic/For about thali 5.jpg",
+      alt: "Traditional South Indian thali"
     }
   ];
 
@@ -52,17 +53,17 @@ const AboutSection = () => {
     {
       title: "Fresh Ingredients",
       description: "We source the finest ingredients to create authentic flavors that transport you to the heart of South India.",
-      color: 'spice'
+      color: 'orange'
     },
     {
       title: "Traditional Recipes",
       description: "Our recipes have been passed down through generations, preserving the authentic taste of South Indian cuisine.",
-      color: 'leaf'
+      color: 'green'
     },
     {
       title: "Warm Ambiance",
       description: "Experience the warmth of Indian hospitality in our thoughtfully designed space that feels like home.",
-      color: 'chili'
+      color: 'red'
     }
   ];
 
@@ -72,16 +73,16 @@ const AboutSection = () => {
       className="relative py-24 pb-32 overflow-hidden"
       style={{ backgroundColor: '#fed647' }}
     >
-      <div className="container mx-auto px-4 pr-6 box-border relative z-10 overflow-y-auto scrollbar-thin scrollbar-thumb-spice-400 scrollbar-track-cream-100">
+      <div className="container mx-auto px-4 pr-6 box-border relative z-10 overflow-y-auto">
         <div ref={textRef} className="text-center mb-16">
           <div className="flex items-center justify-center mb-4">
-            <div className="mr-2 text-spice-600">📖</div>
-            <span className="uppercase tracking-widest text-sm text-spice-600">
+            <div className="mr-2 text-orange-600">📖</div>
+            <span className="uppercase tracking-widest text-sm text-orange-600">
               Our Story
             </span>
           </div>
 
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
             About Bay Leaf
           </h2>
 
@@ -94,13 +95,13 @@ const AboutSection = () => {
           <div className="lg:pr-8">
             {/* White animated box for "Our Story" */}
             <div className="bg-white/80 rounded-xl shadow-lg p-8 mb-8">
-              <h3 className="font-display text-2xl md:text-3xl mb-4 text-gray-900 font-bold">
+              <h3 className="text-2xl md:text-3xl mb-4 text-gray-900 font-bold">
                 Our Story
               </h3>
               <p className="text-gray-700 mb-6 leading-relaxed">
                 Founded with a vision to bring authentic South Indian cuisine to Germany, Bay Leaf represents a culinary journey that spans generations. Our story begins in the bustling kitchens of Tamil Nadu, where traditional recipes were carefully preserved and passed down through families.
               </p>
-              <h4 className="font-display text-xl md:text-2xl mb-2 text-gray-800 font-semibold">
+              <h4 className="text-xl md:text-2xl mb-2 text-gray-800 font-semibold">
                 A Family Legacy
               </h4>
               <p className="text-gray-700 mb-4 leading-relaxed">
@@ -113,21 +114,21 @@ const AboutSection = () => {
             {/* Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
               <div className="flex flex-col items-center bg-white/80 rounded-lg p-6 shadow">
-                <div className="w-16 h-16 rounded-full bg-spice-100 flex items-center justify-center text-spice-600 mb-2 text-2xl font-bold">
+                <div className="w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 mb-2 text-2xl font-bold">
                   15+
                 </div>
                 <h4 className="font-medium text-gray-900">Years Experience</h4>
                 <p className="text-sm text-gray-500">Serving authentic cuisine</p>
               </div>
               <div className="flex flex-col items-center bg-white/80 rounded-lg p-6 shadow">
-                <div className="w-16 h-16 rounded-full bg-leaf-100 flex items-center justify-center text-leaf-600 mb-2 text-2xl font-bold">
+                <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center text-green-600 mb-2 text-2xl font-bold">
                   50+
                 </div>
                 <h4 className="font-medium text-gray-900">Traditional Recipes</h4>
                 <p className="text-sm text-gray-500">Passed down generations</p>
               </div>
               <div className="flex flex-col items-center bg-white/80 rounded-lg p-6 shadow">
-                <div className="w-16 h-16 rounded-full bg-chili-100 flex items-center justify-center text-chili-600 mb-2 text-2xl font-bold">
+                <div className="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center text-red-600 mb-2 text-2xl font-bold">
                   1000+
                 </div>
                 <h4 className="font-medium text-gray-900">Happy Customers</h4>
@@ -196,7 +197,7 @@ const AboutSection = () => {
                 <div className={`w-12 h-12 rounded-full bg-${feature.color}-500 text-white flex items-center justify-center mb-4`}>
                   <span className="font-bold text-xl">{index + 1}</span>
                 </div>
-                <h3 className="font-display text-xl mb-3 text-gray-900">
+                <h3 className="text-xl mb-3 text-gray-900">
                   {feature.title}
                 </h3>
                 <p className="text-gray-600">
@@ -211,15 +212,15 @@ const AboutSection = () => {
         <div className="text-center mb-16 max-w-4xl mx-auto">
           <div className="bg-white/90 rounded-2xl shadow-lg p-8 md:p-12 relative">
             {/* Quote marks */}
-            <div className="text-6xl text-spice-300 absolute top-4 left-6 font-serif">"</div>
-            <div className="text-6xl text-spice-300 absolute bottom-4 right-6 font-serif">"</div>
+            <div className="text-6xl text-orange-300 absolute top-4 left-6 font-serif">"</div>
+            <div className="text-6xl text-orange-300 absolute bottom-4 right-6 font-serif">"</div>
             
             <blockquote className="relative z-10">
               <p className="text-xl md:text-2xl lg:text-3xl font-light text-gray-800 mb-6 leading-relaxed italic">
                 Food is our common ground, a universal experience. When we share a meal, we share stories, culture, and love.
               </p>
               <footer className="flex flex-col items-center">
-                <cite className="text-lg md:text-xl font-semibold text-spice-600 not-italic">
+                <cite className="text-lg md:text-xl font-semibold text-orange-600 not-italic">
                   Chef & Owner
                 </cite>
               </footer>
@@ -229,7 +230,7 @@ const AboutSection = () => {
       </div>
       
       <div className="absolute left-1/2 bottom-8 transform -translate-x-1/2 text-center">
-        <div className="text-gray-600 flex flex-col items-center cursor-pointer hover:text-spice-600 transition-colors">
+        <div className="text-gray-600 flex flex-col items-center cursor-pointer hover:text-orange-600 transition-colors">
           <span className="text-sm uppercase tracking-wider mb-2">
             Explore Our Menu
           </span>
