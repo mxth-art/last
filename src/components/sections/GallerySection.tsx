@@ -12,652 +12,217 @@ interface GalleryItem {
 }
 
 const galleryData: GalleryItem[] = [
-
+  // Original images from gallery pics 2 for bay
   {
     id: "1",
     title: "Traditional Masala Dosa",
-    imageUrl: "/gallery-pics-2-for-bay/image(1).jpeg",
+    imageUrl: "/gallery%20pics%202%20for%20bay/image(1).jpeg",
     category: "food",
     description: "Our signature crispy dosa served with authentic sambar and chutneys"
   },
   {
     id: "2",
     title: "Main Dining Area",
-    imageUrl: "/gallery-pics-2-for-bay/image(2).jpeg",
+    imageUrl: "/gallery%20pics%202%20for%20bay/image(2).jpeg",
     category: "restaurant",
     description: "Elegant dining space with traditional South Indian elements"
   },
   {
     id: "3",
     title: "Chef's Special Curry",
-    imageUrl: "/gallery-pics-2-for-bay/image(3).jpeg",
+    imageUrl: "/gallery%20pics%202%20for%20bay/image(3).jpeg",
     category: "food",
     description: "Aromatic curry prepared with hand-ground spices"
   },
   {
     id: "4",
     title: "Cultural Events",
-    imageUrl: "/gallery-pics-2-for-bay/image(4).jpeg",
+    imageUrl: "/gallery%20pics%202%20for%20bay/image(4).jpeg",
     category: "events",
     description: "Regular cultural performances and traditional music"
   },
   {
     id: "5",
     title: "South Indian Thali",
-    imageUrl: "/gallery-pics-2-for-bay/image(5).jpeg",
+    imageUrl: "/gallery%20pics%202%20for%20bay/image(5).jpeg",
     category: "food",
     description: "Complete meal with variety of curries, rice, and accompaniments"
   },
   {
     id: "6",
     title: "Private Dining",
-    imageUrl: "/gallery-pics-2-for-bay/image(6).jpeg",
+    imageUrl: "/gallery%20pics%202%20for%20bay/image(6).jpeg",
     category: "restaurant",
     description: "Intimate dining space for special occasions"
   },
-  // Additional images from gallery pics 2 for bay (7-30)
-  {
-    id: "7",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(7).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "8",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(8).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "9",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(9).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "10",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(10).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "11",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(11).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "12",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(12).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "13",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(13).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "14",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(14).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "15",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(15).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "16",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(16).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "17",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(17).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "18",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(18).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "19",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(19).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "20",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(20).jpeg",
-    category: "food",
-    description: ""
-  },
+  // New images from gallery pics for bay
   {
     id: "21",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(21).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "22",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(22).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "23",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(23).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "24",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(24).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "25",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(25).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "26",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(26).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "27",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(27).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "28",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(28).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "29",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(29).jpeg",
-    category: "food",
-    description: ""
-  },
-  {
-    id: "30",
-    title: "",
-    imageUrl: "/gallery-pics-2-for-bay/image(30).jpeg",
-    category: "food",
-    description: ""
-  },
-  // All images from gallery pics for bay (with fixed paths)
-  {
-    id: "31",
     title: "Aloo Paratha",
-    imageUrl: "/gallery-pics-for-bay/aloo-paratha-pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/aloo%20paratha%20pic.jpg",
     category: "food",
     description: "Stuffed potato flatbread served with yogurt and pickle"
   },
   {
-    id: "32",
+    id: "22",
     title: "Aloo Chana Chaat",
-    imageUrl: "/gallery-pics-for-bay/Aloo-Chana-Chaat-pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/Aloo-Chana-Chaat-pic.jpg",
     category: "food",
     description: "Spicy chickpea and potato street food"
   },
   {
-    id: "33",
+    id: "23",
     title: "Aloo Gobi",
-    imageUrl: "/gallery-pics-for-bay/aloo-gobi-pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/aloo-gobi%20pic.jpg",
     category: "food",
     description: "Cauliflower and potato curry with aromatic spices"
   },
   {
-    id: "34",
+    id: "24",
     title: "Aloo Palak",
-    imageUrl: "/gallery-pics-for-bay/Aloo-palak-pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/Aloo-palak%20pic.jpg",
     category: "food",
     description: "Spinach and potato curry rich in iron and flavor"
   },
   {
-    id: "35",
+    id: "25",
     title: "Beef Milagu",
-    imageUrl: "/gallery-pics-for-bay/beef-milagu.png",
+    imageUrl: "/gallery%20pics%20for%20bay/beef%20milagu.png",
     category: "food",
     description: "Spicy pepper beef curry from Kerala"
   },
   {
-    id: "36",
+    id: "26",
     title: "Cauliflower Special",
-    imageUrl: "/gallery-pics-for-bay/cauliflower-pictures.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/cauliflower%20pictures.jpg",
     category: "food",
     description: "Roasted cauliflower with special spice blend"
   },
   {
-    id: "37",
+    id: "27",
     title: "Chana Masala",
-    imageUrl: "/gallery-pics-for-bay/chana-masala-pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/chana%20masala%20pic.jpg",
     category: "food",
     description: "Chickpea curry in rich tomato-onion gravy"
   },
   {
-    id: "38",
-    title: "Chettinad Chicken",
-    imageUrl: "/gallery-pics-for-bay/chettinad-chicken-pic.jpeg",
-    category: "food",
-    description: "Authentic Chettinad style spicy chicken"
-  },
-  {
-    id: "39",
-    title: "Chettinad Mutton Kuzhambu",
-    imageUrl: "/gallery-pics-for-bay/Chettinad-Mutton-Kuzhambu-pic.jpg",
-    category: "food",
-    description: "Traditional Chettinad mutton curry"
-  },
-  {
-    id: "40",
+    id: "30",
     title: "Chicken 65",
-    imageUrl: "/gallery-pics-for-bay/chicken-65-picture.JPG",
+    imageUrl: "/gallery%20pics%20for%20bay/chicken%2065%20picture.JPG",
     category: "food",
     description: "Crispy fried chicken with South Indian spices"
   },
   {
-    id: "41",
+    id: "31",
     title: "Chicken Biriyani",
-    imageUrl: "/gallery-pics-for-bay/chicken-briyani-pic.webp",
+    imageUrl: "/gallery%20pics%20for%20bay/chicken%20briyani%20pic.webp",
     category: "food",
     description: "Fragrant basmati rice with tender chicken"
   },
   {
-    id: "42",
+    id: "32",
     title: "Chicken Chettinad",
-    imageUrl: "/gallery-pics-for-bay/chicken-chettinad-pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/chicken%20chettinad%20pic.jpg",
     category: "food",
     description: "Fiery chicken curry from Chettinad region"
   },
   {
-    id: "43",
+    id: "33",
     title: "Chicken Gongura",
-    imageUrl: "/gallery-pics-for-bay/chicken-gongura-pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/chicken%20gongura%20pic.jpg",
     category: "food",
     description: "Tangy chicken curry with sorrel leaves"
   },
   {
-    id: "44",
+    id: "34",
     title: "Chicken Gravy",
-    imageUrl: "/gallery-pics-for-bay/chicken-gravy-pic.webp",
+    imageUrl: "/gallery%20pics%20for%20bay/chicken%20gravy%20pic.webp",
     category: "food",
     description: "Rich and creamy chicken curry"
   },
   {
-    id: "45",
+    id: "35",
     title: "Chicken Special",
-    imageUrl: "/gallery-pics-for-bay/chicken-pic.webp",
+    imageUrl: "/gallery%20pics%20for%20bay/chicken%20pic.webp",
     category: "food",
     description: "Chef's special chicken preparation"
   },
   {
-    id: "46",
+    id: "36",
     title: "Chicken Tikka Masala",
-    imageUrl: "/gallery-pics-for-bay/chicken-tikka-masala-pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/chicken%20tikka%20masala%20pic.jpg",
     category: "food",
     description: "Grilled chicken in creamy tomato sauce"
   },
   {
-    id: "47",
+    id: "37",
     title: "Chicken with Bone",
-    imageUrl: "/gallery-pics-for-bay/chicken-with-bone.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/chicken%20with%20bone.jpg",
     category: "food",
     description: "Traditional bone-in chicken curry"
   },
   {
-    id: "48",
-    title: "Chicken Chettinad Curry",
-    imageUrl: "/gallery-pics-for-bay/Chicken-Chettinad-Curry-pic.jpg",
-    category: "food",
-    description: "Authentic Chettinad chicken curry"
-  },
-  {
-    id: "49",
-    title: "Chicken Kuzhambu",
-    imageUrl: "/gallery-pics-for-bay/Chicken-kuzhambu-recipe-chicken-kulambu-pic.jpg",
-    category: "food",
-    description: "Traditional Tamil chicken kuzhambu"
-  },
-  {
-    id: "50",
+    id: "40",
     title: "Dal Paneer",
-    imageUrl: "/gallery-pics-for-bay/dal-paneer-pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/dal-paneer%20pic.jpg",
     category: "food",
     description: "Lentil curry with cottage cheese"
   },
   {
-    id: "51",
+    id: "41",
     title: "Eral Fry",
-    imageUrl: "/gallery-pics-for-bay/eral-fry.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/eral%20fry.jpg",
     category: "food",
     description: "Spicy prawns stir-fry"
   },
   {
-    id: "52",
+    id: "42",
     title: "Eral Milagu",
-    imageUrl: "/gallery-pics-for-bay/eral-milagu-pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/eral%20milagu%20pic.jpg",
     category: "food",
     description: "Pepper prawns curry"
   },
   {
-    id: "53",
+    id: "43",
     title: "Eral Thoku",
-    imageUrl: "/gallery-pics-for-bay/eral-thoku.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/eral%20thoku.jpg",
     category: "food",
     description: "Dry prawns preparation with spices"
   },
   {
-    id: "54",
+    id: "44",
     title: "Eral Prawn Pepper Fry",
-    imageUrl: "/gallery-pics-for-bay/eral-prawn-pepper-fry-pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/eral-prawn-pepper-fry%20pic.jpg",
     category: "food",
     description: "Spicy pepper prawns fry"
   },
   {
-    id: "55",
+    id: "45",
     title: "Fish Kulambu",
-    imageUrl: "/gallery-pics-for-bay/fish-kulambu-pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/fish%20kulambu%20pic.jpg",
     category: "food",
     description: "Traditional Tamil fish curry"
   },
   {
-    id: "56",
+    id: "46",
     title: "Fish Molee",
-    imageUrl: "/gallery-pics-for-bay/Fish-Molee-pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/Fish-Molee%20pic.jpg",
     category: "food",
     description: "Kerala style fish curry in coconut milk"
   },
   {
-    id: "57",
+    id: "47",
     title: "Gongura Mutton",
-    imageUrl: "/gallery-pics-for-bay/gongura-mutton-pic.webp",
+    imageUrl: "/gallery%20pics%20for%20bay/gongura%20mutton%20pic.webp",
     category: "food",
     description: "Mutton curry with tangy sorrel leaves"
   },
   {
-    id: "58",
+    id: "48",
     title: "Kadai Paneer",
-    imageUrl: "/gallery-pics-for-bay/kadai-paneer-pic.webp",
+    imageUrl: "/gallery%20pics%20for%20bay/kadai-paneer%20pic.webp",
     category: "food",
     description: "Cottage cheese in spicy tomato gravy"
-  },
-  {
-    id: "59",
-    title: "Kari Dosai",
-    imageUrl: "/gallery-pics-for-bay/KARI-DOSAI-PIC.jpg",
-    category: "food",
-    description: "Spicy meat dosa with authentic flavors"
-  },
-  {
-    id: "60",
-    title: "Kashmiri Mutton",
-    imageUrl: "/gallery-pics-for-bay/kashmiri-mutton-2-1.jpg",
-    category: "food",
-    description: "Rich Kashmiri style mutton curry"
-  },
-  {
-    id: "61",
-    title: "Kozhi Masala",
-    imageUrl: "/gallery-pics-for-bay/kozhi-masala-pic.jpg",
-    category: "food",
-    description: "Tamil style chicken masala"
-  },
-  {
-    id: "62",
-    title: "Kongunad Kozhi Kuzhambu",
-    imageUrl: "/gallery-pics-for-bay/kongunad-kozhi-kuzhambu-chicken-curry-pic.jpg",
-    category: "food",
-    description: "Traditional Kongu Nadu chicken curry"
-  },
-  {
-    id: "63",
-    title: "Kozhi Rasam",
-    imageUrl: "/gallery-pics-for-bay/kozhi-rasam-pic-1.jpg",
-    category: "food",
-    description: "Chicken rasam with aromatic spices"
-  },
-  {
-    id: "64",
-    title: "Kozhi Varuthathu",
-    imageUrl: "/gallery-pics-for-bay/Kozhi-Varuthathu-PICTURE.webp",
-    category: "food",
-    description: "Kerala style chicken fry"
-  },
-  {
-    id: "65",
-    title: "Kuruma",
-    imageUrl: "/gallery-pics-for-bay/kuruma-pic.webp",
-    category: "food",
-    description: "Creamy coconut-based curry"
-  },
-  {
-    id: "66",
-    title: "Mango Chicken Curry",
-    imageUrl: "/gallery-pics-for-bay/Mango-Chicken-Curry-pic.jpg",
-    category: "food",
-    description: "Tangy mango chicken curry"
-  },
-  {
-    id: "67",
-    title: "Masala Dosa",
-    imageUrl: "/gallery-pics-for-bay/masala-dosa-pic.webp",
-    category: "food",
-    description: "Crispy dosa with spiced potato filling"
-  },
-  {
-    id: "68",
-    title: "Mixed Vegetable Pakoda",
-    imageUrl: "/gallery-pics-for-bay/mixed-vegetable-pakoda-2.jpg",
-    category: "food",
-    description: "Crispy mixed vegetable fritters"
-  },
-  {
-    id: "69",
-    title: "Mixed Vegetable Pakoda Special",
-    imageUrl: "/gallery-pics-for-bay/mixed-vegetable-pakoda.jpg",
-    category: "food",
-    description: "Special mixed vegetable pakoda"
-  },
-  {
-    id: "70",
-    title: "Mutton Biryani",
-    imageUrl: "/gallery-pics-for-bay/mutton-biryani.jpg",
-    category: "food",
-    description: "Aromatic mutton biryani with fragrant rice"
-  },
-  {
-    id: "71",
-    title: "Mutton Kurma",
-    imageUrl: "/gallery-pics-for-bay/mutton-kurma-pic.jpg",
-    category: "food",
-    description: "Rich and creamy mutton kurma"
-  },
-  {
-    id: "72",
-    title: "Mutton Vindaloo",
-    imageUrl: "/gallery-pics-for-bay/mutton-vindaloo-pic.webp",
-    category: "food",
-    description: "Spicy Goan style mutton vindaloo"
-  },
-  {
-    id: "73",
-    title: "Mutton Biryani Special",
-    imageUrl: "/gallery-pics-for-bay/Mutton-biryani-3.webp",
-    category: "food",
-    description: "Premium mutton biryani with special spices"
-  },
-  {
-    id: "74",
-    title: "Mutton Kola Urundai",
-    imageUrl: "/gallery-pics-for-bay/muttonkola-urundai-PICTURE-01.jpg",
-    category: "food",
-    description: "Traditional Tamil mutton meatballs"
-  },
-  {
-    id: "75",
-    title: "Murg Malai Kabab",
-    imageUrl: "/gallery-pics-for-bay/Murgh-Malai-Kabab.jpg",
-    category: "food",
-    description: "Creamy chicken malai kabab"
-  },
-  {
-    id: "76",
-    title: "Onion Pakoda",
-    imageUrl: "/gallery-pics-for-bay/Onion-pakoda-pic.jpg",
-    category: "food",
-    description: "Crispy onion fritters"
-  },
-  {
-    id: "77",
-    title: "Palak Paneer",
-    imageUrl: "/gallery-pics-for-bay/palak-paneer-pic.jpg",
-    category: "food",
-    description: "Spinach curry with cottage cheese"
-  },
-  {
-    id: "78",
-    title: "Paneer Butter Masala",
-    imageUrl: "/gallery-pics-for-bay/paneer-butter-masala-pic.jpg",
-    category: "food",
-    description: "Rich paneer in creamy tomato gravy"
-  },
-  {
-    id: "79",
-    title: "Paneer Dosa",
-    imageUrl: "/gallery-pics-for-bay/paneer-dosa_July_2024_8.webp",
-    category: "food",
-    description: "Dosa filled with spiced paneer"
-  },
-  {
-    id: "80",
-    title: "Paneer Pakoda",
-    imageUrl: "/gallery-pics-for-bay/paneer-pakoda-pic.jpg",
-    category: "food",
-    description: "Crispy paneer fritters"
-  },
-  {
-    id: "81",
-    title: "Paneer Tikka",
-    imageUrl: "/gallery-pics-for-bay/paneer-tikka-pic.png",
-    category: "food",
-    description: "Grilled paneer with aromatic spices"
-  },
-  {
-    id: "82",
-    title: "Paruppu Keerai",
-    imageUrl: "/gallery-pics-for-bay/paruppu-keerai-pic.jpg",
-    category: "food",
-    description: "Lentils cooked with spinach"
-  },
-  {
-    id: "83",
-    title: "Paruppu Podi",
-    imageUrl: "/gallery-pics-for-bay/paruppu-podi-picture.webp",
-    category: "food",
-    description: "Traditional lentil powder mix"
-  },
-  {
-    id: "84",
-    title: "Pepper Chicken",
-    imageUrl: "/gallery-pics-for-bay/pepper-chicken-pic.jpg",
-    category: "food",
-    description: "Spicy black pepper chicken"
-  },
-  {
-    id: "85",
-    title: "Pepper Mutton",
-    imageUrl: "/gallery-pics-for-bay/PepperMutton-pic.jpg",
-    category: "food",
-    description: "Aromatic pepper mutton curry"
-  },
-  {
-    id: "86",
-    title: "Plain Dosa",
-    imageUrl: "/gallery-pics-for-bay/PLAIN-DOSA-PIC.jpg",
-    category: "food",
-    description: "Classic plain dosa"
-  },
-  {
-    id: "87",
-    title: "Prawn Special",
-    imageUrl: "/gallery-pics-for-bay/prawn-pic.jpg",
-    category: "food",
-    description: "Chef's special prawn preparation"
-  },
-  {
-    id: "88",
-    title: "SET Dosai",
-    imageUrl: "/gallery-pics-for-bay/SET-DOSAI-PIC.jpg",
-    category: "food",
-    description: "Traditional set dosa"
-  },
-  {
-    id: "89",
-    title: "Thakkali Rasam",
-    imageUrl: "/gallery-pics-for-bay/thakkali-rasam-pic.jpg",
-    category: "food",
-    description: "Tangy tomato rasam"
-  },
-  {
-    id: "90",
-    title: "Vegetable Biryani",
-    imageUrl: "/gallery-pics-for-bay/Vegetable-Biryani-pic.jpg",
-    category: "food",
-    description: "Aromatic vegetable biryani"
-  },
-  {
-    id: "91",
-    title: "Vegetable Samosa",
-    imageUrl: "/gallery-pics-for-bay/vegetable-samosa-pic.jpg",
-    category: "food",
-    description: "Crispy vegetable samosas"
-  },
-  {
-    id: "92",
-    title: "Vendikai Kulambu",
-    imageUrl: "/gallery-pics-for-bay/vendikai-kulambu-pic.jpg",
-    category: "food",
-    description: "Traditional okra curry"
   }
 ];
 
