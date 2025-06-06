@@ -16,42 +16,42 @@ const galleryData: GalleryItem[] = [
   {
     id: "1",
     title: "Traditional Masala Dosa",
-    imageUrl: "/gallery%20pics%202%20for%20bay/image(1).jpeg",
+    imageUrl: "/gallery-pics-2-for-bay/image-1.jpeg",
     category: "food",
     description: "Our signature crispy dosa served with authentic sambar and chutneys"
   },
   {
     id: "2",
     title: "Main Dining Area",
-    imageUrl: "/gallery%20pics%202%20for%20bay/image(2).jpeg",
+    imageUrl: "/gallery-pics-2-for-bay/image-2.jpeg",
     category: "restaurant",
     description: "Elegant dining space with traditional South Indian elements"
   },
   {
     id: "3",
     title: "Chef's Special Curry",
-    imageUrl: "/gallery%20pics%202%20for%20bay/image(3).jpeg",
+    imageUrl: "/gallery-pics-2-for-bay/image-3.jpeg",
     category: "food",
     description: "Aromatic curry prepared with hand-ground spices"
   },
   {
     id: "4",
     title: "Cultural Events",
-    imageUrl: "/gallery%20pics%202%20for%20bay/image(4).jpeg",
+    imageUrl: "/gallery-pics-2-for-bay/image-4.jpeg",
     category: "events",
     description: "Regular cultural performances and traditional music"
   },
   {
     id: "5",
     title: "South Indian Thali",
-    imageUrl: "/gallery%20pics%202%20for%20bay/image(5).jpeg",
+    imageUrl: "/gallery-pics-2-for-bay/image-5.jpeg",
     category: "food",
     description: "Complete meal with variety of curries, rice, and accompaniments"
   },
   {
     id: "6",
     title: "Private Dining",
-    imageUrl: "/gallery%20pics%202%20for%20bay/image(6).jpeg",
+    imageUrl: "/gallery-pics-2-for-bay/image-6.jpeg",
     category: "restaurant",
     description: "Intimate dining space for special occasions"
   },
@@ -59,168 +59,168 @@ const galleryData: GalleryItem[] = [
   {
     id: "21",
     title: "Aloo Paratha",
-    imageUrl: "/gallery%20pics%20for%20bay/aloo%20paratha%20pic.jpg",
+    imageUrl: "/gallery-pics-for-bay/aloo-paratha-pic.jpg",
     category: "food",
     description: "Stuffed potato flatbread served with yogurt and pickle"
   },
   {
     id: "22",
     title: "Aloo Chana Chaat",
-    imageUrl: "/gallery%20pics%20for%20bay/Aloo-Chana-Chaat-pic.jpg",
+    imageUrl: "/gallery-pics-for-bay/aloo-chana-chaat-pic.jpg",
     category: "food",
     description: "Spicy chickpea and potato street food"
   },
   {
     id: "23",
     title: "Aloo Gobi",
-    imageUrl: "/gallery%20pics%20for%20bay/aloo-gobi%20pic.jpg",
+    imageUrl: "/gallery-pics-for-bay/aloo-gobi-pic.jpg",
     category: "food",
     description: "Cauliflower and potato curry with aromatic spices"
   },
   {
     id: "24",
     title: "Aloo Palak",
-    imageUrl: "/gallery%20pics%20for%20bay/Aloo-palak%20pic.jpg",
+    imageUrl: "/gallery-pics-for-bay/aloo-palak-pic.jpg",
     category: "food",
     description: "Spinach and potato curry rich in iron and flavor"
   },
   {
     id: "25",
     title: "Beef Milagu",
-    imageUrl: "/gallery%20pics%20for%20bay/beef%20milagu.png",
+    imageUrl: "/gallery-pics-for-bay/beef-milagu.png",
     category: "food",
     description: "Spicy pepper beef curry from Kerala"
   },
   {
     id: "26",
     title: "Cauliflower Special",
-    imageUrl: "/gallery%20pics%20for%20bay/cauliflower%20pictures.jpg",
+    imageUrl: "/gallery-pics-for-bay/cauliflower-pictures.jpg",
     category: "food",
     description: "Roasted cauliflower with special spice blend"
   },
   {
     id: "27",
     title: "Chana Masala",
-    imageUrl: "/gallery%20pics%20for%20bay/chana%20masala%20pic.jpg",
+    imageUrl: "/gallery-pics-for-bay/chana-masala-pic.jpg",
     category: "food",
     description: "Chickpea curry in rich tomato-onion gravy"
   },
   {
     id: "30",
     title: "Chicken 65",
-    imageUrl: "/gallery%20pics%20for%20bay/chicken%2065%20picture.JPG",
+    imageUrl: "/gallery-pics-for-bay/chicken-65-picture.jpg",
     category: "food",
     description: "Crispy fried chicken with South Indian spices"
   },
   {
     id: "31",
     title: "Chicken Biriyani",
-    imageUrl: "/gallery%20pics%20for%20bay/chicken%20briyani%20pic.webp",
+    imageUrl: "/gallery-pics-for-bay/chicken-briyani-pic.webp",
     category: "food",
     description: "Fragrant basmati rice with tender chicken"
   },
   {
     id: "32",
     title: "Chicken Chettinad",
-    imageUrl: "/gallery%20pics%20for%20bay/chicken%20chettinad%20pic.jpg",
+    imageUrl: "/gallery-pics-for-bay/chicken-chettinad-pic.jpg",
     category: "food",
     description: "Fiery chicken curry from Chettinad region"
   },
   {
     id: "33",
     title: "Chicken Gongura",
-    imageUrl: "/gallery%20pics%20for%20bay/chicken%20gongura%20pic.jpg",
+    imageUrl: "/gallery-pics-for-bay/chicken-gongura-pic.jpg",
     category: "food",
     description: "Tangy chicken curry with sorrel leaves"
   },
   {
     id: "34",
     title: "Chicken Gravy",
-    imageUrl: "/gallery%20pics%20for%20bay/chicken%20gravy%20pic.webp",
+    imageUrl: "/gallery-pics-for-bay/chicken-gravy-pic.webp",
     category: "food",
     description: "Rich and creamy chicken curry"
   },
   {
     id: "35",
     title: "Chicken Special",
-    imageUrl: "/gallery%20pics%20for%20bay/chicken%20pic.webp",
+    imageUrl: "/gallery-pics-for-bay/chicken-pic.webp",
     category: "food",
     description: "Chef's special chicken preparation"
   },
   {
     id: "36",
     title: "Chicken Tikka Masala",
-    imageUrl: "/gallery%20pics%20for%20bay/chicken%20tikka%20masala%20pic.jpg",
+    imageUrl: "/gallery-pics-for-bay/chicken-tikka-masala-pic.jpg",
     category: "food",
     description: "Grilled chicken in creamy tomato sauce"
   },
   {
     id: "37",
     title: "Chicken with Bone",
-    imageUrl: "/gallery%20pics%20for%20bay/chicken%20with%20bone.jpg",
+    imageUrl: "/gallery-pics-for-bay/chicken-with-bone.jpg",
     category: "food",
     description: "Traditional bone-in chicken curry"
   },
   {
     id: "40",
     title: "Dal Paneer",
-    imageUrl: "/gallery%20pics%20for%20bay/dal-paneer%20pic.jpg",
+    imageUrl: "/gallery-pics-for-bay/dal-paneer-pic.jpg",
     category: "food",
     description: "Lentil curry with cottage cheese"
   },
   {
     id: "41",
     title: "Eral Fry",
-    imageUrl: "/gallery%20pics%20for%20bay/eral%20fry.jpg",
+    imageUrl: "/gallery-pics-for-bay/eral-fry.jpg",
     category: "food",
     description: "Spicy prawns stir-fry"
   },
   {
     id: "42",
     title: "Eral Milagu",
-    imageUrl: "/gallery%20pics%20for%20bay/eral%20milagu%20pic.jpg",
+    imageUrl: "/gallery-pics-for-bay/eral-milagu-pic.jpg",
     category: "food",
     description: "Pepper prawns curry"
   },
   {
     id: "43",
     title: "Eral Thoku",
-    imageUrl: "/gallery%20pics%20for%20bay/eral%20thoku.jpg",
+    imageUrl: "/gallery-pics-for-bay/eral-thoku.jpg",
     category: "food",
     description: "Dry prawns preparation with spices"
   },
   {
     id: "44",
     title: "Eral Prawn Pepper Fry",
-    imageUrl: "/gallery%20pics%20for%20bay/eral-prawn-pepper-fry%20pic.jpg",
+    imageUrl: "/gallery-pics-for-bay/eral-prawn-pepper-fry-pic.jpg",
     category: "food",
     description: "Spicy pepper prawns fry"
   },
   {
     id: "45",
     title: "Fish Kulambu",
-    imageUrl: "/gallery%20pics%20for%20bay/fish%20kulambu%20pic.jpg",
+    imageUrl: "/gallery-pics-for-bay/fish-kulambu-pic.jpg",
     category: "food",
     description: "Traditional Tamil fish curry"
   },
   {
     id: "46",
     title: "Fish Molee",
-    imageUrl: "/gallery%20pics%20for%20bay/Fish-Molee%20pic.jpg",
+    imageUrl: "/gallery-pics-for-bay/fish-molee-pic.jpg",
     category: "food",
     description: "Kerala style fish curry in coconut milk"
   },
   {
     id: "47",
     title: "Gongura Mutton",
-    imageUrl: "/gallery%20pics%20for%20bay/gongura%20mutton%20pic.webp",
+    imageUrl: "/gallery-pics-for-bay/gongura-mutton-pic.webp",
     category: "food",
     description: "Mutton curry with tangy sorrel leaves"
   },
   {
     id: "48",
     title: "Kadai Paneer",
-    imageUrl: "/gallery%20pics%20for%20bay/kadai-paneer%20pic.webp",
+    imageUrl: "/gallery-pics-for-bay/kadai-paneer-pic.webp",
     category: "food",
     description: "Cottage cheese in spicy tomato gravy"
   }
@@ -244,6 +244,7 @@ const GallerySection: React.FC = () => {
   const categories = ['all', 'food', 'restaurant', 'events'];
 
   const handleImageError = (imageId: string) => {
+    console.log(`Image failed to load: ${imageId}`);
     setImageErrors(prev => new Set([...prev, imageId]));
   };
 
@@ -267,6 +268,7 @@ const GallerySection: React.FC = () => {
         alt={item.title}
         className={className}
         onError={() => handleImageError(item.id)}
+        onLoad={() => console.log(`Image loaded successfully: ${item.title}`)}
         loading="lazy"
         {...props}
       />
