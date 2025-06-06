@@ -115,8 +115,8 @@ const LoadingScreen: React.FC = () => {
             }}
           >
             <img
-              src="https://ik.imagekit.io/qcf813yjh/opening%20screen.jpg"
-              alt="Background Left"
+              src="/red curtain with welcome .jpg"
+              alt="Red Curtain Welcome Left"
               className="w-full h-full object-cover"
             />
           </div>
@@ -132,8 +132,8 @@ const LoadingScreen: React.FC = () => {
             }}
           >
             <img
-              src="https://ik.imagekit.io/qcf813yjh/opening%20screen.jpg"
-              alt="Background Right"
+              src="/red curtain with welcome .jpg"
+              alt="Red Curtain Welcome Right"
               className="w-full h-full object-cover"
             />
           </div>
@@ -143,12 +143,6 @@ const LoadingScreen: React.FC = () => {
             ref={textRef}
             className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-10 pointer-events-none"
           >
-            <h1 className="text-black font-display text-4xl sm:text-5xl md:text-6xl drop-shadow-lg animate-pulse">
-              BayLeaf
-            </h1>
-            <p className="text-black mt-2 text-lg sm:text-xl md:text-2xl drop-shadow">
-              A taste of South India in Germany
-            </p>
           </div>
         </div>
       </div>
