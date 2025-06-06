@@ -10,10 +10,6 @@ const AboutSection = () => {
   
   const images = [
     {
-      src: "/about us pic/For aboout 2 chicken.jpg",
-      alt: "Traditional South Indian chicken dish"
-    },
-    {
       src: "/about us pic/For about 1.jpg",
       alt: "Restaurant ambiance"
     },
