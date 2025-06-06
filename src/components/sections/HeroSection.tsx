@@ -50,7 +50,7 @@ const HeroSection: React.FC = () => {
         {/* Thiruvalluvar Image */}
         <div className="absolute bottom-0 left-0 w-48 h-48 xs:w-52 xs:h-52 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-[28rem] lg:h-[28rem] z-[100] -ml-16 xs:-ml-20 sm:-ml-24 md:-ml-32 lg:-ml-40 -mb-12 xs:-mb-16 sm:-mb-20 md:-mb-24 lg:-mb-28">
           <img 
-            src="public/thiruvalluvar wo bg final.png" 
+            src="/thiruvalluvar wo bg final.png" 
             alt="Thiruvalluvar"
             className="w-full h-full object-contain"
             draggable={false}
