@@ -57,7 +57,7 @@ const ScrollHideContactHeader = () => {
           <a href="#" aria-label="Facebook" className="hover:text-yellow-400">
             <Facebook size={16} />
           </a>
-          <a href="#" aria-label="Instagram" className="hover:text-yellow-400">
+          <a href="https://www.instagram.com/bayleafsingen?igsh=Yjg4YWR3YzNveTZq&utm_source=qr" aria-label="Instagram" className="hover:text-yellow-400">
             <Instagram size={16} />
           </a>
           <a href="#" aria-label="Twitter" className="hover:text-yellow-400">
