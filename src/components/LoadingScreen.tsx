@@ -14,7 +14,6 @@ const LoadingScreen: React.FC = () => {
   useEffect(() => {
     const tl = gsap.timeline();
 
-    // Initial animation for background and text
     tl.set([bgLeftRef.current, bgRightRef.current], { opacity: 0 })
       .set(textRef.current, { opacity: 0 })
       .to([bgLeftRef.current, bgRightRef.current], {
@@ -36,41 +35,13 @@ const LoadingScreen: React.FC = () => {
       });
 
       openCurtain
-        .to(textRef.current, {
-          opacity: 0,
-          duration: 0.3,
-          ease: 'power2.out'
-        })
-        .to(bgLeftRef.current, {
-          x: '-50vw',
-          duration: 0.8,
-          ease: 'power2.out'
-        }, '-=0.1')
-        .to(bgRightRef.current, {
-          x: '50vw',
-          duration: 0.8,
-          ease: 'power2.out'
-        }, '-=0.8')
-        .to([bgLeftRef.current, bgRightRef.current], {
-          opacity: 0,
-          duration: 0.4,
-          ease: 'power2.out'
-        }, '-=0.2')
-        .to(curtainLeftRef.current, {
-          scaleX: 0,
-          duration: 0.8,
-          ease: 'power3.inOut'
-        }, '-=0.3')
-        .to(curtainRightRef.current, {
-          scaleX: 0,
-          duration: 0.8,
-          ease: 'power3.inOut'
-        }, '-=0.8')
-        .to(backdropRef.current, {
-          opacity: 0,
-          duration: 0.2,
-          ease: 'power2.out'
-        }, '-=0.2');
+        .to(textRef.current, { opacity: 0, duration: 0.3, ease: 'power2.out' })
+        .to(bgLeftRef.current, { x: '-50vw', duration: 0.8, ease: 'power2.out' }, '-=0.1')
+        .to(bgRightRef.current, { x: '50vw', duration: 0.8, ease: 'power2.out' }, '-=0.8')
+        .to([bgLeftRef.current, bgRightRef.current], { opacity: 0, duration: 0.4, ease: 'power2.out' }, '-=0.2')
+        .to(curtainLeftRef.current, { scaleX: 0, duration: 0.8, ease: 'power3.inOut' }, '-=0.3')
+        .to(curtainRightRef.current, { scaleX: 0, duration: 0.8, ease: 'power3.inOut' }, '-=0.8')
+        .to(backdropRef.current, { opacity: 0, duration: 0.2, ease: 'power2.out' }, '-=0.2');
     }, 1500);
 
     return () => clearTimeout(timer);
@@ -80,69 +51,66 @@ const LoadingScreen: React.FC = () => {
 
   return (
     <>
-      {/* Solid backdrop to prevent peeking */}
-      <div 
+      {/* Backdrop */}
+      <div
         ref={backdropRef}
         className="fixed inset-0 bg-white z-[9999]"
       />
-      
-      {/* Left curtain */}
-      <div 
-        ref={curtainLeftRef} 
-        className="fixed top-0 left-0 h-screen w-1/2 bg-white z-[10000]"
+
+      {/* Curtains */}
+      <div
+        ref={curtainLeftRef}
+        className="fixed top-0 left-0 h-full w-1/2 bg-white z-[10000]"
         style={{ transformOrigin: 'left center' }}
       />
-      
-      {/* Right curtain */}
-      <div 
-        ref={curtainRightRef} 
-        className="fixed top-0 right-0 h-screen w-1/2 bg-white z-[10000]"
+      <div
+        ref={curtainRightRef}
+        className="fixed top-0 right-0 h-full w-1/2 bg-white z-[10000]"
         style={{ transformOrigin: 'right center' }}
       />
-      
+
       {/* Curtain content */}
       <div className="fixed inset-0 flex items-center justify-center z-[10001]">
         <div className="relative flex flex-col items-center justify-center w-full h-full">
-          
-          {/* Background Left */}
+          {/* Left Background */}
           <div
             ref={bgLeftRef}
-            className="absolute flex items-center justify-center w-full h-full"
+            className="absolute top-0 left-0 w-full h-full flex items-center justify-center"
             style={{
               clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)',
-              transformOrigin: 'center center',
-              zIndex: 1
+              zIndex: 1,
             }}
           >
             <img
               src="/red curtain with welcome .jpg"
-              alt="Red Curtain Welcome Left"
-              className="w-full h-full object-cover"
+              alt="Red Curtain Left"
+              className="w-full h-full object-cover object-center"
             />
           </div>
 
-          {/* Background Right */}
+          {/* Right Background */}
           <div
             ref={bgRightRef}
-            className="absolute flex items-center justify-center w-full h-full"
+            className="absolute top-0 right-0 w-full h-full flex items-center justify-center"
             style={{
               clipPath: 'polygon(50% 0, 100% 0, 100% 100%, 50% 100%)',
-              transformOrigin: 'center center',
-              zIndex: 1
+              zIndex: 1,
             }}
           >
             <img
               src="/red curtain with welcome .jpg"
-              alt="Red Curtain Welcome Right"
-              className="w-full h-full object-cover"
+              alt="Red Curtain Right"
+              className="w-full h-full object-cover object-center"
             />
           </div>
 
-          {/* Text */}
+          {/* Optional Text (add if needed) */}
           <div
             ref={textRef}
-            className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-10 pointer-events-none"
+            className="absolute inset-0 flex flex-col items-center justify-center px-4 z-10 pointer-events-none text-black text-center text-lg md:text-2xl font-semibold"
           >
+            {/* You can insert a welcome text here if required */}
+            {/* <p>Welcome</p> */}
           </div>
         </div>
       </div>
