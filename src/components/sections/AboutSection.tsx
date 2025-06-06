@@ -251,15 +251,15 @@ const AboutSection: React.FC = () => {
               className="cursor-pointer transform transition-all duration-300 hover:scale-105"
               onClick={() => window.open('https://en.wikipedia.org/wiki/Brihadisvara_Temple', '_blank')}
             >
-              <div className="bg-white/90 rounded-lg shadow-lg p-3 sm:p-4 hover:shadow-xl transition-shadow duration-300">
+              <div className="relative">
                 <img
                   src="/thanjavur temple -Photoroom.png"
                   alt="Thanjavur Brihadisvara Temple"
-                  className="w-full h-[80px] sm:h-[100px] lg:h-[120px] object-contain rounded"
+                  className="w-full h-[200px] sm:h-[250px] lg:h-[400px] xl:h-[500px] object-contain mx-auto"
                 />
-                <div className="text-center mt-2">
-                  <p className="text-xs sm:text-sm font-medium text-gray-800">Brihadisvara Temple</p>
-                  <p className="text-xs text-gray-600">Click to learn more</p>
+                <div className="text-center mt-4">
+                  <p className="text-sm sm:text-base font-medium text-gray-800">Brihadisvara Temple</p>
+                  <p className="text-xs sm:text-sm text-gray-600">Click to learn more</p>
                 </div>
               </div>
             </motion.div>
