@@ -175,8 +175,8 @@ export const translations = {
         de: 'Jede Stadt ist unsere Stadt, jeder ist unser Verwandter.'
       },
       author: {
-        en: 'Thiruvalluvar',
-        de: 'Thiruvalluvar'
+        en: 'Kaniyan Pungundranar',
+        de: 'Kaniyan Pungundranar'
       },
     },
     cta: {

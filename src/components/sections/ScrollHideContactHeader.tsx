@@ -51,7 +51,7 @@ const ScrollHideContactHeader = () => {
         <div className="flex items-center gap-2">
           <Clock size={14} />
           <span className="hidden xl:inline">Opening Hours:</span>
-          8:00am - 11:30pm
+          11:30 AM – 2:30 PM / 5:30 PM - 10:00 PM
         </div>
         <div className="flex items-center gap-3 ml-4">
           <a href="https://www.facebook.com/share/15ZqHPsWyt/?mibextid=wwXIfr" aria-label="Facebook" className="hover:text-yellow-400">
