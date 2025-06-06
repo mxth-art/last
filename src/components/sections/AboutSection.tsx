@@ -1,287 +1,135 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-scroll';
+import { BookOpen, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
+import { translations } from '../../context/translations';
 
-const AboutSection = () => {
-  const textRef = useRef(null);
-  const contentRef = useRef(null);
-  
-  // Image slider state
+const AboutSection: React.FC = () => {
+  const textRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const { language } = useLanguage();
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
-  
   const images = [
-    {
-      src: "/about us pic/For about 1.jpg",
-      alt: "Restaurant ambiance"
-    },
-    {
-      src: "/about us pic/For about fish 4.jpg",
-      alt: "Fresh South Indian fish curry"
-    },
-    {
-      src: "/about us pic/For about thali 5.jpg",
-      alt: "Traditional South Indian thali"
-    }
+    { src: "https://ik.imageKit.io/jacw2jgvs/la43-listing.jpg?updatedAt=1747316422127", alt: "Restaurant interior" },
+    { src: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&h=600&fit=crop", alt: "Traditional South Indian dishes" },
+    { src: "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=800&h=600&fit=crop", alt: "Chef preparing food" },
+    { src: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&h=600&fit=crop", alt: "Spices and ingredients" }
   ];
 
-  // Auto-slide functionality
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => 
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 4000); // Change image every 4 seconds
-
+      setCurrentImageIndex(prevIndex => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+    }, 4000);
     return () => clearInterval(interval);
   }, [images.length]);
 
-  const handleImageError = (imageSrc: string) => {
-    console.log(`Image failed to load: ${imageSrc}`);
-    setImageErrors(prev => new Set([...Array.from(prev), imageSrc]));
-  };
-
-  const nextImage = () => {
-    setCurrentImageIndex((prevIndex) => 
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prevIndex) => 
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
+  const nextImage = () => setCurrentImageIndex(prev => (prev === images.length - 1 ? 0 : prev + 1));
+  const prevImage = () => setCurrentImageIndex(prev => (prev === 0 ? images.length - 1 : prev - 1));
 
   const features = [
-    {
-      title: "Fresh Ingredients",
-      description: "We source the finest ingredients to create authentic flavors that transport you to the heart of South India.",
-      color: 'orange'
-    },
-    {
-      title: "Traditional Recipes",
-      description: "Our recipes have been passed down through generations, preserving the authentic taste of South Indian cuisine.",
-      color: 'green'
-    },
-    {
-      title: "Warm Ambiance",
-      description: "Experience the warmth of Indian hospitality in our thoughtfully designed space that feels like home.",
-      color: 'red'
-    }
+    { ...translations.about.features.ingredients, color: 'spice' },
+    { ...translations.about.features.recipes, color: 'leaf' },
+    { ...translations.about.features.ambiance, color: 'chili' }
   ];
 
-  // Image component with error handling
-  const ImageComponent = ({ image, index }: { image: typeof images[0]; index: number }) => {
-    const hasError = imageErrors.has(image.src);
-    
-    if (hasError) {
-      return (
-        <div 
-          className="absolute inset-0 w-full h-full bg-gradient-to-br from-orange-200 to-orange-300 flex items-center justify-center"
-          style={{
-            opacity: index === currentImageIndex ? 1 : 0,
-            transition: 'opacity 0.7s ease-in-out'
-          }}
-        >
-          <div className="text-center p-8">
-            <div className="text-6xl mb-4">🍽️</div>
-            <p className="text-orange-800 text-lg font-medium">{image.alt}</p>
-          </div>
-        </div>
-      );
-    }
-
-    return (
-      <img
-        src={image.src}
-        alt={image.alt}
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ 
-          opacity: index === currentImageIndex ? 1 : 0,
-          transform: index === currentImageIndex ? 'scale(1)' : 'scale(1.1)',
-          transition: 'opacity 0.7s ease-in-out, transform 0.7s ease-in-out'
-        }}
-        onError={() => handleImageError(image.src)}
-        onLoad={() => console.log(`Image loaded successfully: ${image.alt}`)}
-        loading="lazy"
-      />
-    );
-  };
-
   return (
-    <section
-      id="about"
-      className="relative py-24 pb-32 overflow-hidden"
-      style={{ backgroundColor: '#fed647' }}
-    >
-      <div className="container mx-auto px-4 pr-6 box-border relative z-10 overflow-y-auto">
+    <section id="about" className="relative py-24 pb-32 overflow-hidden" style={{ backgroundColor: '#fed647' }}>
+      <div className="container mx-auto px-4 pr-6 box-border relative z-10 overflow-y-auto scrollbar-thin scrollbar-thumb-spice-400 scrollbar-track-cream-100">
         <div ref={textRef} className="text-center mb-16">
-          <div className="flex items-center justify-center mb-4">
-            <div className="mr-2 text-orange-600">📖</div>
-            <span className="uppercase tracking-widest text-sm text-orange-600">
-              Our Story
-            </span>
-          </div>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="flex items-center justify-center mb-4">
+            <BookOpen className="mr-2 text-spice-600" size={20} />
+            <span className="uppercase tracking-widest text-sm text-spice-600">{translations.about.subtitle[language]}</span>
+          </motion.div>
 
-          <h2 className="font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
-            About Bay Leaf
-          </h2>
+          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }} className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            {translations.about.title[language]}
+          </motion.h2>
 
-          <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
-            Discover the authentic flavors of South India in the heart of Germany. Our journey began with a passion for sharing traditional recipes and creating memorable dining experiences.
-          </p>
+          <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
+            {translations.about.description[language]}
+          </motion.p>
         </div>
-        
+
         <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mt-12">
-          <div className="lg:pr-8">
-            {/* White animated box for "Our Story" */}
-            <div className="bg-white/80 rounded-xl shadow-lg p-8 mb-8">
-              <h3 className="text-2xl md:text-3xl mb-4 text-gray-900 font-bold">
-                Our Story
-              </h3>
-              <p className="text-gray-700 mb-6 leading-relaxed">
-                Founded with a vision to bring authentic South Indian cuisine to Germany, Bay Leaf represents a culinary journey that spans generations. Our story begins in the bustling kitchens of Tamil Nadu, where traditional recipes were carefully preserved and passed down through families.
-              </p>
-              <h4 className="text-xl md:text-2xl mb-2 text-gray-800 font-semibold">
-                A Family Legacy
-              </h4>
-              <p className="text-gray-700 mb-4 leading-relaxed">
-                What started as a family tradition has blossomed into a restaurant that celebrates the rich heritage of South Indian cooking. Every dish tells a story, every spice blend carries history.
-              </p>
-              <p className="text-gray-700 leading-relaxed">
-                Today, we continue this legacy by serving authentic dishes prepared with the same love and care that has defined our family's cooking for generations.
-              </p>
-            </div>
-            {/* Stats */}
+          <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.3 }} className="lg:pr-8">
+            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }} className="bg-white/80 rounded-xl shadow-lg p-8 mb-8">
+              <h3 className="font-display text-2xl md:text-3xl mb-4 text-gray-900 font-bold">{translations.about.story.title[language]}</h3>
+              <p className="text-gray-700 mb-6 leading-relaxed">{translations.about.story.content[language]}</p>
+              <h4 className="font-display text-xl md:text-2xl mb-2 text-gray-800 font-semibold">{translations.about.legacy.title[language]}</h4>
+              <p className="text-gray-700 mb-4 leading-relaxed">{translations.about.legacy.story[language]}</p>
+              <p className="text-gray-700 leading-relaxed">{translations.about.legacy.continuation[language]}</p>
+            </motion.div>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-              <div className="flex flex-col items-center bg-white/80 rounded-lg p-6 shadow">
-                <div className="w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 mb-2 text-2xl font-bold">
-                  15+
-                </div>
-                <h4 className="font-medium text-gray-900">Years Experience</h4>
-                <p className="text-sm text-gray-500">Serving authentic cuisine</p>
-              </div>
-              <div className="flex flex-col items-center bg-white/80 rounded-lg p-6 shadow">
-                <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center text-green-600 mb-2 text-2xl font-bold">
-                  50+
-                </div>
-                <h4 className="font-medium text-gray-900">Traditional Recipes</h4>
-                <p className="text-sm text-gray-500">Passed down generations</p>
-              </div>
-              <div className="flex flex-col items-center bg-white/80 rounded-lg p-6 shadow">
-                <div className="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center text-red-600 mb-2 text-2xl font-bold">
-                  1000+
-                </div>
-                <h4 className="font-medium text-gray-900">Happy Customers</h4>
-                <p className="text-sm text-gray-500">Monthly satisfied diners</p>
-              </div>
+              {["experience", "recipes", "customers"].map((key, idx) => (
+                <motion.div key={key} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.6 + idx * 0.2 }} className="flex flex-col items-center bg-white/80 rounded-lg p-6 shadow">
+                  <div className={`w-16 h-16 rounded-full bg-${key === 'experience' ? 'spice' : key === 'recipes' ? 'leaf' : 'chili'}-100 flex items-center justify-center text-${key === 'experience' ? 'spice' : key === 'recipes' ? 'leaf' : 'chili'}-600 mb-2 text-2xl font-bold`}>
+                    {translations.about.stats[key].number}+
+                  </div>
+                  <h4 className="font-medium text-gray-900">{translations.about.stats[key].label[language]}</h4>
+                  <p className="text-sm text-gray-500">{translations.about.stats[key].subtext[language]}</p>
+                </motion.div>
+              ))}
             </div>
-          </div>
-          
-          {/* Right column: Image Slider */}
-          <div className="h-[600px] rounded-lg overflow-hidden shadow-xl relative group">
-            {/* Image Container */}
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.5 }} className="h-[600px] rounded-lg overflow-hidden shadow-xl relative group">
             <div className="relative w-full h-full">
               {images.map((image, index) => (
-                <ImageComponent
-                  key={index}
-                  image={image}
-                  index={index}
-                />
+                <motion.img key={index} src={image.src} alt={image.alt} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: index === currentImageIndex ? 1 : 0, scale: index === currentImageIndex ? 1 : 1.1 }} transition={{ duration: 0.7, ease: "easeInOut" }} />
               ))}
             </div>
 
-            {/* Navigation Buttons */}
-            <button
-              onClick={prevImage}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:shadow-xl"
-              aria-label="Previous image"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
+            <button onClick={prevImage} className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:shadow-xl">
+              <ChevronLeft size={24} />
             </button>
-            <button
-              onClick={nextImage}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:shadow-xl"
-              aria-label="Next image"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+            <button onClick={nextImage} className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:shadow-xl">
+              <ChevronRight size={24} />
             </button>
 
-            {/* Dots Indicator */}
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
               {images.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentImageIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentImageIndex 
-                      ? 'bg-white scale-110' 
-                      : 'bg-white/60 hover:bg-white/80'
-                  }`}
-                  aria-label={`Go to image ${index + 1}`}
-                />
+                <button key={index} onClick={() => setCurrentImageIndex(index)} className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentImageIndex ? 'bg-white scale-110' : 'bg-white/60 hover:bg-white/80'}`} />
               ))}
             </div>
-          </div>
-        </div>
-        
-        <div className="mt-16 mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div
-                key={feature.title}
-                className="bg-white/80 p-8 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
-              >
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${
-                  feature.color === 'orange' ? 'bg-orange-500' :
-                  feature.color === 'green' ? 'bg-green-500' : 'bg-red-500'
-                } text-white`}>
-                  <span className="font-bold text-xl">{index + 1}</span>
-                </div>
-                <h3 className="text-xl mb-3 text-gray-900">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
-          </div>
+          </motion.div>
         </div>
 
-        {/* Quote Section */}
-        <div className="text-center mb-16 max-w-4xl mx-auto">
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.6 }} className="mt-16 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <motion.div key={feature.title[language]} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.7 + index * 0.2 }} whileHover={{ y: -10 }} className="bg-white/80 p-8 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-xl">
+                <div className={`w-12 h-12 rounded-full bg-${feature.color}-500 text-white flex items-center justify-center mb-4`}>
+                  <span className="font-bold text-xl">{index + 1}</span>
+                </div>
+                <h3 className="font-display text-xl mb-3 text-gray-900">{feature.title[language]}</h3>
+                <p className="text-gray-600">{feature.description[language]}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }} className="text-center mb-16 max-w-4xl mx-auto">
           <div className="bg-white/90 rounded-2xl shadow-lg p-8 md:p-12 relative">
-            {/* Quote marks */}
-            <div className="text-6xl text-orange-300 absolute top-4 left-6 font-serif">"</div>
-            <div className="text-6xl text-orange-300 absolute bottom-4 right-6 font-serif">"</div>
-            
+            <div className="text-6xl text-spice-300 absolute top-4 left-6 font-serif">"</div>
+            <div className="text-6xl text-spice-300 absolute bottom-4 right-6 font-serif">"</div>
             <blockquote className="relative z-10">
-              <p className="text-xl md:text-2xl lg:text-3xl font-light text-gray-800 mb-6 leading-relaxed italic">
-                Food is our common ground, a universal experience. When we share a meal, we share stories, culture, and love.
-              </p>
+              <p className="text-xl md:text-2xl lg:text-3xl font-light text-gray-800 mb-6 leading-relaxed italic">{translations.about.quote.text[language]}</p>
               <footer className="flex flex-col items-center">
-                <cite className="text-lg md:text-xl font-semibold text-orange-600 not-italic">
-                  Chef & Owner
-                </cite>
+                <cite className="text-lg md:text-xl font-semibold text-spice-600 not-italic">{translations.about.quote.author[language]}</cite>
               </footer>
             </blockquote>
           </div>
-        </div>
+        </motion.div>
       </div>
-      
+
       <div className="absolute left-1/2 bottom-8 transform -translate-x-1/2 text-center">
-        <div className="text-gray-600 flex flex-col items-center cursor-pointer hover:text-orange-600 transition-colors">
-          <span className="text-sm uppercase tracking-wider mb-2">
-            Explore Our Menu
-          </span>
-          <svg className="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </div>
+        <Link to="menu" spy={true} smooth={true} offset={-80} duration={800} className="text-gray-600 flex flex-col items-center cursor-pointer hover:text-spice-600 transition-colors">
+          <span className="text-sm uppercase tracking-wider mb-2">{translations.about.cta[language]}</span>
+          <ChevronDown size={20} className="animate-bounce" />
+        </Link>
       </div>
     </section>
   );
