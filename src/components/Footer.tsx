@@ -29,10 +29,10 @@ const Footer: React.FC = () => {
               Experience the rich flavors and traditions of South India.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-white hover:text-spice-400 transition-colors">
+              <a href="https://www.facebook.com/share/15ZqHPsWyt/?mibextid=wwXIfr" className="text-white hover:text-spice-400 transition-colors">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-white hover:text-spice-400 transition-colors">
+              <a href="https://www.instagram.com/bayleafsingen?igsh=Yjg4YWR3YzNveTZq&utm_source=qr" className="text-white hover:text-spice-400 transition-colors">
                 <Instagram size={20} />
               </a>
               <a href="#" className="text-white hover:text-spice-400 transition-colors">

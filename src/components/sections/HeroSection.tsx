@@ -29,12 +29,25 @@ const HeroSection: React.FC = () => {
     <section 
       id="home" 
       className="relative w-full"
-      style={{ minHeight: '100vh', height: '100vh', backgroundColor: '#fed647' }}
+      style={{ 
+        minHeight: '100vh', 
+        height: '100vh',
+        backgroundImage: 'url(/IMG_3552-Photoroom.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
     >
+      {/* Background overlay to maintain the yellow tint if needed */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{ backgroundColor: 'rgba(254, 214, 71, 0.8)' }}
+      />
+
       {/* Background */}
       <div 
         ref={bgRef}
-        className="absolute top-0 left-0 w-full h-full overflow-hidden z-0"
+        className="absolute top-0 left-0 w-full h-full overflow-hidden z-10"
         style={{ minHeight: '100vh' }}
       >
         <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[100vw] h-screen overflow-hidden pointer-events-none">
@@ -93,7 +106,7 @@ const HeroSection: React.FC = () => {
       </button>
 
       {/* Foreground Content */}
-      <div className="absolute inset-0 z-10">
+      <div className="absolute inset-0 z-20">
         <div className="absolute top-1/2 -translate-y-1/2 sm:top-1/4 sm:translate-y-0 left-4 xs:left-6 sm:left-16 md:left-24 lg:left-32 text-gray-900 max-w-[calc(100vw-2rem)] xs:max-w-[calc(100vw-3rem)] sm:max-w-none">
           <div className="text-gray-900 flex items-center mb-3 xs:mb-4 sm:mb-6">
             <Utensils className="mr-1 xs:mr-2 flex-shrink-0" size={16} />
@@ -135,7 +148,7 @@ const HeroSection: React.FC = () => {
         </div>
 
         {/* Quote Section */}
-        <div className="absolute bottom-2 xs:bottom-4 sm:bottom-8 lg:bottom-2 left-1/2 -translate-x-1/2 flex justify-center w-full z-20 px-2 xs:px-4">
+        <div className="absolute bottom-2 xs:bottom-4 sm:bottom-8 lg:bottom-2 left-1/2 -translate-x-1/2 flex justify-center w-full z-30 px-2 xs:px-4">
           <div className="flex items-start justify-center w-full max-w-xs xs:max-w-sm sm:max-w-2xl lg:max-w-4xl">
             <div className="w-full text-center relative">
               <a
