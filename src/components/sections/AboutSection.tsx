@@ -6,23 +6,23 @@ const AboutSection = () => {
   
   // Image slider state
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [imageErrors, setImageErrors] = useState(new Set());
+  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
   
   const images = [
     {
-      src: "/public/about us pic/For aboout  2 chicken.jpg",
+      src: "/about us pic/For aboout 2 chicken.jpg",
       alt: "Traditional South Indian chicken dish"
     },
     {
-      src: "/public/about us pic/for-about-1.jpg",
+      src: "/about us pic/For about 1.jpg",
       alt: "Restaurant ambiance"
     },
     {
-      src: "/public/about us pic/for-about-fish-4.jpg",
+      src: "/about us pic/For about fish 4.jpg",
       alt: "Fresh South Indian fish curry"
     },
     {
-      src: "/public/about us pic/for-about-thali-5.jpg",
+      src: "/about us pic/For about thali 5.jpg",
       alt: "Traditional South Indian thali"
     }
   ];
@@ -38,9 +38,9 @@ const AboutSection = () => {
     return () => clearInterval(interval);
   }, [images.length]);
 
-  const handleImageError = (imageSrc) => {
+  const handleImageError = (imageSrc: string) => {
     console.log(`Image failed to load: ${imageSrc}`);
-    setImageErrors(prev => new Set([...prev, imageSrc]));
+    setImageErrors(prev => new Set([...Array.from(prev), imageSrc]));
   };
 
   const nextImage = () => {
@@ -74,7 +74,7 @@ const AboutSection = () => {
   ];
 
   // Image component with error handling
-  const ImageComponent = ({ image, index }) => {
+  const ImageComponent = ({ image, index }: { image: typeof images[0]; index: number }) => {
     const hasError = imageErrors.has(image.src);
     
     if (hasError) {
