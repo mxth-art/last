@@ -6,12 +6,13 @@ const AboutSection = () => {
   
   // Image slider state
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
+  
   const images = [
     {
       src: "/for-about-2-chicken.jpg",
       alt: "Traditional South Indian chicken dish"
     },
-    
     {
       src: "/for-about-1.jpg",
       alt: "Restaurant ambiance"
@@ -36,6 +37,11 @@ const AboutSection = () => {
 
     return () => clearInterval(interval);
   }, [images.length]);
+
+  const handleImageError = (imageSrc: string) => {
+    console.log(`Image failed to load: ${imageSrc}`);
+    setImageErrors(prev => new Set([...prev, imageSrc]));
+  };
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) => 
@@ -66,6 +72,44 @@ const AboutSection = () => {
       color: 'red'
     }
   ];
+
+  // Image component with error handling
+  const ImageComponent = ({ image, index }: { image: typeof images[0]; index: number }) => {
+    const hasError = imageErrors.has(image.src);
+    
+    if (hasError) {
+      return (
+        <div 
+          className="absolute inset-0 w-full h-full bg-gradient-to-br from-orange-200 to-orange-300 flex items-center justify-center"
+          style={{
+            opacity: index === currentImageIndex ? 1 : 0,
+            transition: 'opacity 0.7s ease-in-out'
+          }}
+        >
+          <div className="text-center p-8">
+            <div className="text-6xl mb-4">🍽️</div>
+            <p className="text-orange-800 text-lg font-medium">{image.alt}</p>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <img
+        src={image.src}
+        alt={image.alt}
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ 
+          opacity: index === currentImageIndex ? 1 : 0,
+          transform: index === currentImageIndex ? 'scale(1)' : 'scale(1.1)',
+          transition: 'opacity 0.7s ease-in-out, transform 0.7s ease-in-out'
+        }}
+        onError={() => handleImageError(image.src)}
+        onLoad={() => console.log(`Image loaded successfully: ${image.alt}`)}
+        loading="lazy"
+      />
+    );
+  };
 
   return (
     <section
@@ -142,16 +186,10 @@ const AboutSection = () => {
             {/* Image Container */}
             <div className="relative w-full h-full">
               {images.map((image, index) => (
-                <img
+                <ImageComponent
                   key={index}
-                  src={image.src}
-                  alt={image.alt}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  style={{ 
-                    opacity: index === currentImageIndex ? 1 : 0,
-                    transform: index === currentImageIndex ? 'scale(1)' : 'scale(1.1)',
-                    transition: 'opacity 0.7s ease-in-out, transform 0.7s ease-in-out'
-                  }}
+                  image={image}
+                  index={index}
                 />
               ))}
             </div>
@@ -159,15 +197,21 @@ const AboutSection = () => {
             {/* Navigation Buttons */}
             <button
               onClick={prevImage}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+              aria-label="Previous image"
             >
-              <div>◀</div>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
             </button>
             <button
               onClick={nextImage}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+              aria-label="Next image"
             >
-              <div>▶</div>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </button>
 
             {/* Dots Indicator */}
@@ -181,6 +225,7 @@ const AboutSection = () => {
                       ? 'bg-white scale-110' 
                       : 'bg-white/60 hover:bg-white/80'
                   }`}
+                  aria-label={`Go to image ${index + 1}`}
                 />
               ))}
             </div>
@@ -194,7 +239,10 @@ const AboutSection = () => {
                 key={feature.title}
                 className="bg-white/80 p-8 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
               >
-                <div className={`w-12 h-12 rounded-full bg-${feature.color}-500 text-white flex items-center justify-center mb-4`}>
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${
+                  feature.color === 'orange' ? 'bg-orange-500' :
+                  feature.color === 'green' ? 'bg-green-500' : 'bg-red-500'
+                } text-white`}>
                   <span className="font-bold text-xl">{index + 1}</span>
                 </div>
                 <h3 className="text-xl mb-3 text-gray-900">
@@ -234,7 +282,9 @@ const AboutSection = () => {
           <span className="text-sm uppercase tracking-wider mb-2">
             Explore Our Menu
           </span>
-          <div className="animate-bounce">⌄</div>
+          <svg className="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
         </div>
       </div>
     </section>
