@@ -53,7 +53,7 @@ const HeroSection: React.FC = () => {
         <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[100vw] h-screen overflow-hidden pointer-events-none">
           <div className="absolute top-1/2 -right-1/2 w-[120vw] h-[120vw] flex justify-center items-center hero-rotate">
             <img 
-              src="/plattered.svg" 
+              src="/IMG_3555-Photoroom.png" 
               alt="Rotating plate decoration"
               className="w-full h-full object-contain"
             />
