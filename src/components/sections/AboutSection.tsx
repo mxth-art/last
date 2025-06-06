@@ -8,20 +8,20 @@ const AboutSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [
     {
-      src: "src/assests/about us pic/For aboout  2 chicken.jpg",
+      src: "/for-about-2-chicken.jpg",
       alt: "Traditional South Indian chicken dish"
     },
     
     {
-      src: "src/assests/about us pic/For about 1.jpg",
+      src: "/for-about-1.jpg",
       alt: "Restaurant ambiance"
     },
     {
-      src: "src/assests/about us pic/For about fish 4.jpg",
+      src: "/for-about-fish-4.jpg",
       alt: "Fresh South Indian fish curry"
     },
     {
-      src: "src/assests/about us pic/For about thali 5.jpg",
+      src: "/for-about-thali-5.jpg",
       alt: "Traditional South Indian thali"
     }
   ];

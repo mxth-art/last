@@ -16,42 +16,42 @@ const galleryData: GalleryItem[] = [
   {
     id: "1",
     title: "Traditional Masala Dosa",
-    imageUrl: "/gallery pics 2 for bay/image(1).jpeg",
+    imageUrl: "/gallery%20pics%202%20for%20bay/image(1).jpeg",
     category: "food",
     description: "Our signature crispy dosa served with authentic sambar and chutneys"
   },
   {
     id: "2",
     title: "Main Dining Area",
-    imageUrl: "/gallery pics 2 for bay/image(2).jpeg",
+    imageUrl: "/gallery%20pics%202%20for%20bay/image(2).jpeg",
     category: "restaurant",
     description: "Elegant dining space with traditional South Indian elements"
   },
   {
     id: "3",
     title: "Chef's Special Curry",
-    imageUrl: "/gallery pics 2 for bay/image(3).jpeg",
+    imageUrl: "/gallery%20pics%202%20for%20bay/image(3).jpeg",
     category: "food",
     description: "Aromatic curry prepared with hand-ground spices"
   },
   {
     id: "4",
     title: "Cultural Events",
-    imageUrl: "/gallery pics 2 for bay/image(4).jpeg",
+    imageUrl: "/gallery%20pics%202%20for%20bay/image(4).jpeg",
     category: "events",
     description: "Regular cultural performances and traditional music"
   },
   {
     id: "5",
     title: "South Indian Thali",
-    imageUrl: "/gallery pics 2 for bay/image(5).jpeg",
+    imageUrl: "/gallery%20pics%202%20for%20bay/image(5).jpeg",
     category: "food",
     description: "Complete meal with variety of curries, rice, and accompaniments"
   },
   {
     id: "6",
     title: "Private Dining",
-    imageUrl: "/gallery pics 2 for bay/image(6).jpeg",
+    imageUrl: "/gallery%20pics%202%20for%20bay/image(6).jpeg",
     category: "restaurant",
     description: "Intimate dining space for special occasions"
   },
@@ -59,170 +59,168 @@ const galleryData: GalleryItem[] = [
   {
     id: "21",
     title: "Aloo Paratha",
-    imageUrl: "/gallery pics for bay/aloo paratha pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/aloo%20paratha%20pic.jpg",
     category: "food",
     description: "Stuffed potato flatbread served with yogurt and pickle"
   },
   {
     id: "22",
     title: "Aloo Chana Chaat",
-    imageUrl: "/gallery pics for bay/Aloo-Chana-Chaat-pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/Aloo-Chana-Chaat-pic.jpg",
     category: "food",
     description: "Spicy chickpea and potato street food"
   },
   {
     id: "23",
     title: "Aloo Gobi",
-    imageUrl: "/gallery pics for bay/aloo-gobi pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/aloo-gobi%20pic.jpg",
     category: "food",
     description: "Cauliflower and potato curry with aromatic spices"
   },
   {
     id: "24",
     title: "Aloo Palak",
-    imageUrl: "/gallery pics for bay/Aloo-palak pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/Aloo-palak%20pic.jpg",
     category: "food",
     description: "Spinach and potato curry rich in iron and flavor"
   },
   {
     id: "25",
     title: "Beef Milagu",
-    imageUrl: "/gallery pics for bay/beef milagu.png",
+    imageUrl: "/gallery%20pics%20for%20bay/beef%20milagu.png",
     category: "food",
     description: "Spicy pepper beef curry from Kerala"
   },
   {
     id: "26",
     title: "Cauliflower Special",
-    imageUrl: "/gallery pics for bay/cauliflower pictures.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/cauliflower%20pictures.jpg",
     category: "food",
     description: "Roasted cauliflower with special spice blend"
   },
   {
     id: "27",
     title: "Chana Masala",
-    imageUrl: "/gallery pics for bay/chana masala pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/chana%20masala%20pic.jpg",
     category: "food",
     description: "Chickpea curry in rich tomato-onion gravy"
   },
-
   {
     id: "30",
     title: "Chicken 65",
-    imageUrl: "/gallery pics for bay/chicken 65 picture.JPG",
+    imageUrl: "/gallery%20pics%20for%20bay/chicken%2065%20picture.JPG",
     category: "food",
     description: "Crispy fried chicken with South Indian spices"
   },
   {
     id: "31",
     title: "Chicken Biriyani",
-    imageUrl: "/gallery pics for bay/chicken briyani pic.webp",
+    imageUrl: "/gallery%20pics%20for%20bay/chicken%20briyani%20pic.webp",
     category: "food",
     description: "Fragrant basmati rice with tender chicken"
   },
   {
     id: "32",
     title: "Chicken Chettinad",
-    imageUrl: "/gallery pics for bay/chicken chettinad pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/chicken%20chettinad%20pic.jpg",
     category: "food",
     description: "Fiery chicken curry from Chettinad region"
   },
   {
     id: "33",
     title: "Chicken Gongura",
-    imageUrl: "/gallery pics for bay/chicken gongura pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/chicken%20gongura%20pic.jpg",
     category: "food",
     description: "Tangy chicken curry with sorrel leaves"
   },
   {
     id: "34",
     title: "Chicken Gravy",
-    imageUrl: "/gallery pics for bay/chicken gravy pic.webp",
+    imageUrl: "/gallery%20pics%20for%20bay/chicken%20gravy%20pic.webp",
     category: "food",
     description: "Rich and creamy chicken curry"
   },
   {
     id: "35",
     title: "Chicken Special",
-    imageUrl: "/gallery pics for bay/chicken pic.webp",
+    imageUrl: "/gallery%20pics%20for%20bay/chicken%20pic.webp",
     category: "food",
     description: "Chef's special chicken preparation"
   },
   {
     id: "36",
     title: "Chicken Tikka Masala",
-    imageUrl: "/gallery pics for bay/chicken tikka masala pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/chicken%20tikka%20masala%20pic.jpg",
     category: "food",
     description: "Grilled chicken in creamy tomato sauce"
   },
   {
     id: "37",
     title: "Chicken with Bone",
-    imageUrl: "/gallery pics for bay/chicken with bone.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/chicken%20with%20bone.jpg",
     category: "food",
     description: "Traditional bone-in chicken curry"
   },
-
   {
     id: "40",
     title: "Dal Paneer",
-    imageUrl: "/gallery pics for bay/dal-paneer pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/dal-paneer%20pic.jpg",
     category: "food",
     description: "Lentil curry with cottage cheese"
   },
   {
     id: "41",
     title: "Eral Fry",
-    imageUrl: "/gallery pics for bay/eral fry.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/eral%20fry.jpg",
     category: "food",
     description: "Spicy prawns stir-fry"
   },
   {
     id: "42",
     title: "Eral Milagu",
-    imageUrl: "/gallery pics for bay/eral milagu pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/eral%20milagu%20pic.jpg",
     category: "food",
     description: "Pepper prawns curry"
   },
   {
     id: "43",
     title: "Eral Thoku",
-    imageUrl: "/gallery pics for bay/eral thoku.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/eral%20thoku.jpg",
     category: "food",
     description: "Dry prawns preparation with spices"
   },
   {
     id: "44",
     title: "Eral Prawn Pepper Fry",
-    imageUrl: "/gallery pics for bay/eral-prawn-pepper-fry pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/eral-prawn-pepper-fry%20pic.jpg",
     category: "food",
     description: "Spicy pepper prawns fry"
   },
   {
     id: "45",
     title: "Fish Kulambu",
-    imageUrl: "/gallery pics for bay/fish kulambu pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/fish%20kulambu%20pic.jpg",
     category: "food",
     description: "Traditional Tamil fish curry"
   },
   {
     id: "46",
     title: "Fish Molee",
-    imageUrl: "/gallery pics for bay/Fish-Molee pic.jpg",
+    imageUrl: "/gallery%20pics%20for%20bay/Fish-Molee%20pic.jpg",
     category: "food",
     description: "Kerala style fish curry in coconut milk"
   },
   {
     id: "47",
     title: "Gongura Mutton",
-    imageUrl: "/gallery pics for bay/gongura mutton pic.webp",
+    imageUrl: "/gallery%20pics%20for%20bay/gongura%20mutton%20pic.webp",
     category: "food",
     description: "Mutton curry with tangy sorrel leaves"
   },
   {
     id: "48",
     title: "Kadai Paneer",
-    imageUrl: "/gallery pics for bay/kadai-paneer pic.webp",
+    imageUrl: "/gallery%20pics%20for%20bay/kadai-paneer%20pic.webp",
     category: "food",
     description: "Cottage cheese in spicy tomato gravy"
   }
@@ -232,6 +230,7 @@ const GallerySection: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
   const [filter, setFilter] = useState('all');
   const [showAll, setShowAll] = useState(false);
+  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
   
   const textRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -243,6 +242,36 @@ const GallerySection: React.FC = () => {
   const displayedImages = showAll ? filteredImages : filteredImages.slice(0, 9);
 
   const categories = ['all', 'food', 'restaurant', 'events'];
+
+  const handleImageError = (imageId: string) => {
+    setImageErrors(prev => new Set([...prev, imageId]));
+  };
+
+  const ImageComponent = ({ item, className, ...props }: { item: GalleryItem; className?: string; [key: string]: any }) => {
+    const hasError = imageErrors.has(item.id);
+    
+    if (hasError) {
+      return (
+        <div className={`${className} bg-gray-200 flex items-center justify-center`}>
+          <div className="text-center p-4">
+            <Image className="mx-auto mb-2 text-gray-400" size={32} />
+            <p className="text-gray-500 text-sm">{item.title}</p>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <img 
+        src={item.imageUrl} 
+        alt={item.title}
+        className={className}
+        onError={() => handleImageError(item.id)}
+        loading="lazy"
+        {...props}
+      />
+    );
+  };
 
   return (
     <section id="gallery" className="relative py-24 bg-cream-50">
@@ -331,9 +360,8 @@ const GallerySection: React.FC = () => {
                 className="cursor-pointer group"
               >
                 <div className="relative overflow-hidden rounded-lg shadow-md aspect-square">
-                  <motion.img 
-                    src={item.imageUrl} 
-                    alt={item.title}
+                  <ImageComponent
+                    item={item}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
@@ -424,9 +452,8 @@ const GallerySection: React.FC = () => {
                 >
                   <X size={24} />
                 </button>
-                <img 
-                  src={selectedImage.imageUrl} 
-                  alt={selectedImage.title}
+                <ImageComponent
+                  item={selectedImage}
                   className="w-full max-h-[70vh] object-cover"
                 />
                 <div className="p-6">
