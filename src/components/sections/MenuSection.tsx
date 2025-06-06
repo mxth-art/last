@@ -63,7 +63,7 @@ const MenuSection: React.FC = () => {
   };
 
   return (
-    <section id="menu" className="relative py-24 bg-cream-50">
+    <section id="menu" className="relative py-24" style={{ backgroundColor: '#ffd647' }}>
       <div className="container mx-auto px-4 relative z-10">
         <div ref={textRef} className="text-center mb-16">
           <motion.div
@@ -112,7 +112,6 @@ const MenuSection: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
             >
-              {translations.menu.categories[category][language]}
             </motion.button>
           ))}
         </motion.div>

@@ -572,7 +572,7 @@ const GallerySection: React.FC = () => {
   };
 
   return (
-    <section id="gallery" className="relative py-24 bg-cream-50">
+    <section id="gallery" className="relative py-24" style={{ backgroundColor: '#ffd647' }}>
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div ref={textRef} className="text-center mb-16">
