@@ -1,62 +1,170 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-scroll';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import gsap from 'gsap';
+import { contactService, type Reservation } from '../../lib/supabase';
+import { useLanguage } from '../../context/LanguageContext';
+import { translations } from '../../context/translations';
+
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  date: string;
+  time: string;
+  guests: string;
+  special_requests: string;
+}
+
+interface FormStatus {
+  type: 'idle' | 'loading' | 'success' | 'error';
+  message: string;
+}
 
 const ContactSection: React.FC = () => {
+  const { language } = useLanguage();
   const formRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<HTMLDivElement>(null);
   
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
+    phone: '',
     date: '',
     time: '',
     guests: '2',
+    special_requests: ''
+  });
+
+  const [formStatus, setFormStatus] = useState<FormStatus>({
+    type: 'idle',
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    setFormStatus({ type: 'loading', message: 'Submitting your reservation...' });
+
+    try {
+      // Validate required fields
+      if (!formData.name || !formData.email || !formData.date || !formData.time) {
+        throw new Error('Please fill in all required fields');
+      }
+
+      // Validate email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        throw new Error('Please enter a valid email address');
+      }
+
+      // Validate date is not in the past
+      const selectedDate = new Date(formData.date);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      if (selectedDate < today) {
+        throw new Error('Please select a future date');
+      }
+
+      // Prepare reservation data
+      const reservationData: Omit<Reservation, 'id' | 'created_at' | 'status'> = {
+        name: formData.name.trim(),
+        email: formData.email.trim().toLowerCase(),
+        phone: formData.phone.trim() || undefined,
+        date: formData.date,
+        time: formData.time,
+        guests: parseInt(formData.guests),
+        special_requests: formData.special_requests.trim() || undefined
+      };
+
+      // Submit to Supabase
+      await contactService.submitReservation(reservationData);
+
+      // Success
+      setFormStatus({
+        type: 'success',
+        message: language === 'en' 
+          ? 'Reservation submitted successfully! We will contact you soon to confirm.'
+          : 'Reservierung erfolgreich eingereicht! Wir werden Sie bald kontaktieren, um zu bestätigen.'
+      });
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        date: '',
+        time: '',
+        guests: '2',
+        special_requests: ''
+      });
+
+      // Auto-hide success message after 5 seconds
+      setTimeout(() => {
+        setFormStatus({ type: 'idle', message: '' });
+      }, 5000);
+
+    } catch (error) {
+      console.error('Error submitting reservation:', error);
+      setFormStatus({
+        type: 'error',
+        message: error instanceof Error ? error.message : 'An error occurred. Please try again.'
+      });
+
+      // Auto-hide error message after 5 seconds
+      setTimeout(() => {
+        setFormStatus({ type: 'idle', message: '' });
+      }, 5000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value
-    });
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  // Get minimum date (today)
+  const getMinDate = () => {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
+  };
+
+  // Get available time slots
+  const getTimeSlots = () => {
+    const lunchSlots = ['11:30', '12:00', '12:30', '13:00', '13:30', '14:00'];
+    const dinnerSlots = ['17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00'];
+    return [...lunchSlots, ...dinnerSlots];
   };
 
   const contactInfo = [
     {
       icon: <MapPin size={20} />,
-      title: "Address",
+      title: translations.contact.info.address[language],
       content: "August-Ruf-Straße 16, 78224 Singen (Hohentwiel)"
     },
     {
       icon: <Phone size={20} />,
-      title: "Phone",
+      title: translations.contact.info.phone[language],
       content: "+49 179 423 2002"
     },
     {
       icon: <Mail size={20} />,
-      title: "Email",
+      title: translations.contact.info.email[language],
       content: "info@bay-leaf.eu"
     },
     {
       icon: <Clock size={20} />,
-      title: "Opening Hours",
+      title: translations.contact.info.hours[language],
       content: (
         <>
-          Tue-Sun: 11:30 AM – 2:30 PM / 5:30 PM - 10:00 PM<br />
-          Closed on Mondays
+          {language === 'en' ? 'Tue-Sun: 11:30 AM – 2:30 PM / 5:30 PM - 10:00 PM' : 'Di-So: 11:30 – 14:30 / 17:30 - 22:00'}<br />
+          {language === 'en' ? 'Closed on Mondays' : 'Montags geschlossen'}
         </>
       )
     }
-    
   ];
 
   return (
@@ -65,9 +173,7 @@ const ContactSection: React.FC = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Background Image */}
-      <div 
-        className="absolute top-0 left-0 w-full h-full overflow-hidden z-0"
-      >
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <img
           src="https://ik.imagekit.io/qcf813yjh/banna%20leaf%20food%20pictures%20(1).webp"
           alt="Banana leaf food background"
@@ -82,9 +188,11 @@ const ContactSection: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-display text-4xl md:text-5xl text-white font-bold text-center mb-4">Contact Us</h2>
+          <h2 className="font-display text-4xl md:text-5xl text-white font-bold text-center mb-4">
+            {translations.contact.title[language]}
+          </h2>
           <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto text-center mb-12">
-            We'd love to hear from you! Make a reservation or send us your questions.
+            {translations.contact.subtitle[language]}
           </p>
         </motion.div>
         
@@ -96,102 +204,178 @@ const ContactSection: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="bg-white/95 backdrop-blur p-8 rounded-lg shadow-xl"
           >
-            <h3 className="font-display text-2xl mb-6 text-gray-900">Book a Table</h3>
+            <h3 className="font-display text-2xl mb-6 text-gray-900">
+              {translations.contact.form.submit[language]}
+            </h3>
+            
+            {/* Status Message */}
+            {formStatus.type !== 'idle' && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
+                  formStatus.type === 'success' 
+                    ? 'bg-green-50 text-green-800 border border-green-200' 
+                    : formStatus.type === 'error'
+                    ? 'bg-red-50 text-red-800 border border-red-200'
+                    : 'bg-blue-50 text-blue-800 border border-blue-200'
+                }`}
+              >
+                {formStatus.type === 'loading' && <Loader2 size={20} className="animate-spin" />}
+                {formStatus.type === 'success' && <CheckCircle size={20} />}
+                {formStatus.type === 'error' && <AlertCircle size={20} />}
+                <span className="text-sm">{formStatus.message}</span>
+              </motion.div>
+            )}
             
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="name" className="block text-gray-700 mb-1">Name</label>
+                  <label htmlFor="name" className="block text-gray-700 mb-1 font-medium">
+                    {translations.contact.form.name[language]} *
+                  </label>
                   <input
                     type="text"
                     id="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-spice-500"
-                    placeholder="Your name"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-spice-500 focus:border-transparent"
+                    placeholder={language === 'en' ? 'Your full name' : 'Ihr vollständiger Name'}
                     required
+                    disabled={formStatus.type === 'loading'}
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-gray-700 mb-1">Email</label>
+                  <label htmlFor="email" className="block text-gray-700 mb-1 font-medium">
+                    {translations.contact.form.email[language]} *
+                  </label>
                   <input
                     type="email"
                     id="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-spice-500"
-                    placeholder="Your email"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-spice-500 focus:border-transparent"
+                    placeholder={language === 'en' ? 'your.email@example.com' : 'ihre.email@beispiel.de'}
                     required
+                    disabled={formStatus.type === 'loading'}
                   />
                 </div>
+              </div>
+
+              <div>
+                <label htmlFor="phone" className="block text-gray-700 mb-1 font-medium">
+                  {translations.contact.info.phone[language]} {language === 'en' ? '(Optional)' : '(Optional)'}
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-spice-500 focus:border-transparent"
+                  placeholder={language === 'en' ? '+49 123 456 7890' : '+49 123 456 7890'}
+                  disabled={formStatus.type === 'loading'}
+                />
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="date" className="block text-gray-700 mb-1">Date</label>
+                  <label htmlFor="date" className="block text-gray-700 mb-1 font-medium">
+                    {translations.contact.form.date[language]} *
+                  </label>
                   <input
                     type="date"
                     id="date"
                     value={formData.date}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-spice-500"
+                    min={getMinDate()}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-spice-500 focus:border-transparent"
                     required
+                    disabled={formStatus.type === 'loading'}
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="time" className="block text-gray-700 mb-1">Time</label>
+                  <label htmlFor="time" className="block text-gray-700 mb-1 font-medium">
+                    {translations.contact.form.time[language]} *
+                  </label>
                   <select
                     id="time"
                     value={formData.time}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-spice-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-spice-500 focus:border-transparent"
                     required
+                    disabled={formStatus.type === 'loading'}
                   >
-                    <option value="">Select time</option>
-                    {['12:00', '13:00', '14:00', '18:00', '19:00', '20:00', '21:00'].map(time => (
-                      <option key={time} value={time}>{time}</option>
-                    ))}
+                    <option value="">{language === 'en' ? 'Select time' : 'Zeit auswählen'}</option>
+                    <optgroup label={language === 'en' ? 'Lunch (11:30 AM - 2:30 PM)' : 'Mittagessen (11:30 - 14:30)'}>
+                      {getTimeSlots().slice(0, 6).map(time => (
+                        <option key={time} value={time}>{time}</option>
+                      ))}
+                    </optgroup>
+                    <optgroup label={language === 'en' ? 'Dinner (5:30 PM - 10:00 PM)' : 'Abendessen (17:30 - 22:00)'}>
+                      {getTimeSlots().slice(6).map(time => (
+                        <option key={time} value={time}>{time}</option>
+                      ))}
+                    </optgroup>
                   </select>
                 </div>
               </div>
               
               <div>
-                <label htmlFor="guests" className="block text-gray-700 mb-1">Number of Guests</label>
+                <label htmlFor="guests" className="block text-gray-700 mb-1 font-medium">
+                  {translations.contact.form.guests[language]} *
+                </label>
                 <select
                   id="guests"
                   value={formData.guests}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-spice-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-spice-500 focus:border-transparent"
                   required
+                  disabled={formStatus.type === 'loading'}
                 >
-                  {[1, 2, 3, 4, 5, 6].map(num => (
-                    <option key={num} value={num}>{num} {num === 1 ? 'person' : 'people'}</option>
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
+                    <option key={num} value={num}>
+                      {num} {num === 1 
+                        ? (language === 'en' ? 'person' : 'Person') 
+                        : (language === 'en' ? 'people' : 'Personen')
+                      }
+                    </option>
                   ))}
-                  <option value="7">6+ people</option>
+                  <option value="11">{language === 'en' ? '10+ people (call us)' : '10+ Personen (rufen Sie uns an)'}</option>
                 </select>
               </div>
               
               <div>
-                <label htmlFor="message" className="block text-gray-700 mb-1">Special Requests</label>
+                <label htmlFor="special_requests" className="block text-gray-700 mb-1 font-medium">
+                  {translations.contact.form.message[language]}
+                </label>
                 <textarea
-                  id="message"
-                  value={formData.message}
+                  id="special_requests"
+                  value={formData.special_requests}
                   onChange={handleChange}
                   rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-spice-500"
-                  placeholder="Any special requests or dietary requirements?"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-spice-500 focus:border-transparent"
+                  placeholder={language === 'en' 
+                    ? 'Any special requests, dietary requirements, or allergies?' 
+                    : 'Besondere Wünsche, Ernährungsanforderungen oder Allergien?'
+                  }
+                  disabled={formStatus.type === 'loading'}
                 ></textarea>
               </div>
               
               <motion.button
                 type="submit"
-                className="w-full btn-primary"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className="w-full btn-primary flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                whileHover={{ scale: formStatus.type === 'loading' ? 1 : 1.02 }}
+                whileTap={{ scale: formStatus.type === 'loading' ? 1 : 0.98 }}
+                disabled={formStatus.type === 'loading'}
               >
-                Book Now
+                {formStatus.type === 'loading' && <Loader2 size={20} className="animate-spin" />}
+                {formStatus.type === 'loading' 
+                  ? (language === 'en' ? 'Submitting...' : 'Wird eingereicht...')
+                  : translations.contact.form.submit[language]
+                }
               </motion.button>
             </form>
           </motion.div>
@@ -202,7 +386,9 @@ const ContactSection: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="bg-white/95 backdrop-blur p-8 rounded-lg shadow-xl"
           >
-            <h3 className="font-display text-2xl mb-8 text-gray-900">Get in Touch</h3>
+            <h3 className="font-display text-2xl mb-8 text-gray-900">
+              {language === 'en' ? 'Get in Touch' : 'Kontakt aufnehmen'}
+            </h3>
             
             <div className="space-y-8">
               {contactInfo.map((info, index) => (
@@ -231,7 +417,9 @@ const ContactSection: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="mt-8"
             >
-              <h4 className="font-medium text-gray-900 mb-4">Find Us</h4>
+              <h4 className="font-medium text-gray-900 mb-4">
+                {language === 'en' ? 'Find Us' : 'Finden Sie uns'}
+              </h4>
               <div className="h-[200px] rounded-lg overflow-hidden">
                 <iframe 
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2682.023456696236!2d8.836444776165843!3d47.76159937120448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a7d35eeee6f1f%3A0xe5111ed81e27db8c!2sBay%20Leaf!5e0!3m2!1sen!2sin!4v1748797783448!5m2!1sen!2sin"
@@ -261,7 +449,9 @@ const ContactSection: React.FC = () => {
           duration={800}
           className="text-white/80 flex flex-col items-center cursor-pointer hover:text-white transition-colors"
         >
-          <span className="text-sm uppercase tracking-wider mb-2">Follow Us</span>
+          <span className="text-sm uppercase tracking-wider mb-2">
+            {language === 'en' ? 'Follow Us' : 'Folgen Sie uns'}
+          </span>
           <div className="flex space-x-4">
             <div className="w-2 h-2 bg-white rounded-full"></div>
             <div className="w-2 h-2 bg-white rounded-full"></div>
