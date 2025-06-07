@@ -35,13 +35,13 @@ const LoadingScreen: React.FC = () => {
       });
 
       openCurtain
-        .to(textRef.current, { opacity: 0, duration: 0.5, ease: 'power2.out' }) // Adjusted duration
-        .to(bgLeftRef.current, { x: '-50vw', duration: 1.5, ease: 'power2.out' }, '-=0.1') // Adjusted duration
-        .to(bgRightRef.current, { x: '50vw', duration: 1.5, ease: 'power2.out' }, '-=1.5') // Adjusted duration
-        .to([bgLeftRef.current, bgRightRef.current], { opacity: 0, duration: 0.5, ease: 'power2.out' }, '-=0.2') // Adjusted duration
-        .to(curtainLeftRef.current, { scaleX: 0, duration: 1.5, ease: 'power3.inOut' }, '-=0.3') // Adjusted duration
-        .to(curtainRightRef.current, { scaleX: 0, duration: 1.5, ease: 'power3.inOut' }, '-=1.5') // Adjusted duration
-        .to(backdropRef.current, { opacity: 0, duration: 0.5, ease: 'power2.out' }, '-=0.2'); // Adjusted duration
+        .to(textRef.current, { opacity: 0, duration: 0.6, ease: 'power2.out' }) // Adjusted duration
+        .to(bgLeftRef.current, { x: '-50vw', duration: 2.0, ease: 'power2.out' }, '-=0.2') // Adjusted duration
+        .to(bgRightRef.current, { x: '50vw', duration: 2.0, ease: 'power2.out' }, '-=2.0') // Adjusted duration
+        .to([bgLeftRef.current, bgRightRef.current], { opacity: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3') // Adjusted duration
+        .to(curtainLeftRef.current, { scaleX: 0, duration: 2.0, ease: 'power3.inOut' }, '-=0.4') // Adjusted duration
+        .to(curtainRightRef.current, { scaleX: 0, duration: 2.0, ease: 'power3.inOut' }, '-=2.0') // Adjusted duration
+        .to(backdropRef.current, { opacity: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3'); // Adjusted duration
     }, 1500);
 
     return () => clearTimeout(timer);
