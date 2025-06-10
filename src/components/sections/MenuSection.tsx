@@ -430,7 +430,35 @@ const MenuSection: React.FC = () => {
   };
 
   return (
-    <section id="menu" className="relative py-24" style={{ backgroundColor: '#ffd647' }}>
+    <section id="menu" className="relative py-24 overflow-hidden" style={{ backgroundColor: '#ffd647' }}>
+      {/* Rotating Table Background */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+        <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[100vw] h-screen overflow-hidden pointer-events-none">
+          <div className="absolute top-1/2 -right-1/2 w-[120vw] h-[120vw] flex justify-center items-center menu-table-rotate">
+            <img 
+              src="/Menu/table.jpg" 
+              alt="Rotating table decoration"
+              className="w-full h-full object-contain opacity-20"
+            />
+          </div>
+        </div>
+
+        <style>{`
+          .menu-table-rotate {
+            animation: menuTableRotate 30s linear infinite;
+            transform-origin: center;
+          }
+          @keyframes menuTableRotate {
+            from {
+              transform: translateY(-50%) rotate(0deg);
+            }
+            to {
+              transform: translateY(-50%) rotate(360deg);
+            }
+          }
+        `}</style>
+      </div>
+
       <div className="container mx-auto px-4 relative z-10">
         <div ref={textRef} className="text-center mb-16">
           <motion.div
@@ -517,7 +545,7 @@ const MenuSection: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
+                className="bg-white/95 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
               >
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-3">
@@ -600,7 +628,7 @@ const MenuSection: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="text-center mt-16"
         >
-          <div className="bg-white/90 rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
             <h3 className="font-display text-2xl font-bold text-gray-900 mb-4">
               Ready to Experience Authentic Indian Cuisine?
             </h3>
