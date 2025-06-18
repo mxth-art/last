@@ -10,6 +10,7 @@ const HeroSection: React.FC = () => {
   const { language } = useLanguage();
   const [showInvisibleTooltip, setShowInvisibleTooltip] = useState(true);
   const [showQuoteTooltip, setShowQuoteTooltip] = useState(true);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   useEffect(() => {
     if (showInvisibleTooltip) {
@@ -24,6 +25,28 @@ const HeroSection: React.FC = () => {
       return () => clearTimeout(timer);
     }
   }, [showQuoteTooltip]);
+
+  // Preload hero images
+  useEffect(() => {
+    const heroImages = [
+      '/IMG_3555-Photoroom.png',
+      '/thiruvalluvar wo bg final.png',
+      '/IMG_3552-Photoroom.png'
+    ];
+
+    const imagePromises = heroImages.map(src => {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = resolve;
+        img.onerror = resolve; // Still resolve even if image fails
+        img.src = src;
+      });
+    });
+
+    Promise.all(imagePromises).then(() => {
+      setImagesLoaded(true);
+    });
+  }, []);
 
   return (
     <section 
@@ -51,22 +74,24 @@ const HeroSection: React.FC = () => {
         style={{ minHeight: '100vh' }}
       >
         <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[100vw] h-screen overflow-hidden pointer-events-none">
-          <div className="absolute top-1/2 -right-1/2 w-[120vw] h-[120vw] flex justify-center items-center hero-rotate">
+          <div className={`absolute top-1/2 -right-1/2 w-[120vw] h-[120vw] flex justify-center items-center transition-opacity duration-500 ${imagesLoaded ? 'opacity-100 hero-rotate' : 'opacity-0'}`}>
             <img 
               src="/IMG_3555-Photoroom.png" 
               alt="Rotating plate decoration"
               className="w-full h-full object-contain"
+              loading="eager"
             />
           </div>
         </div>
 
         {/* Thiruvalluvar Image */}
-        <div className="absolute bottom-0 left-0 w-48 h-48 xs:w-52 xs:h-52 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-[28rem] lg:h-[28rem] z-[100] -ml-16 xs:-ml-20 sm:-ml-24 md:-ml-32 lg:-ml-40 -mb-12 xs:-mb-16 sm:-mb-20 md:-mb-24 lg:-mb-28">
+        <div className={`absolute bottom-0 left-0 w-48 h-48 xs:w-52 xs:h-52 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-[28rem] lg:h-[28rem] z-[100] -ml-16 xs:-ml-20 sm:-ml-24 md:-ml-32 lg:-ml-40 -mb-12 xs:-mb-16 sm:-mb-20 md:-mb-24 lg:-mb-28 transition-opacity duration-500 ${imagesLoaded ? 'opacity-100' : 'opacity-0'}`}>
           <img 
             src="/thiruvalluvar wo bg final.png" 
             alt="Thiruvalluvar"
             className="w-full h-full object-contain"
             draggable={false}
+            loading="eager"
           />
         </div>
 

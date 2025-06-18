@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-scroll';
 import { Menu, ChevronDown, Utensils, Coffee, Wine } from 'lucide-react';
@@ -414,9 +414,18 @@ const MenuSection: React.FC = () => {
   
   const [activeCategory, setActiveCategory] = useState("all");
   const [showAllItems, setShowAllItems] = useState(false);
+  const [tableImageLoaded, setTableImageLoaded] = useState(false);
 
   const textRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  // Preload table image
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => setTableImageLoaded(true);
+    img.onerror = () => setTableImageLoaded(true); // Still show even if fails
+    img.src = '/Menu/table.jpg';
+  }, []);
 
   const filteredMenu = activeCategory === "all"
     ? menuData
@@ -434,11 +443,12 @@ const MenuSection: React.FC = () => {
       {/* Rotating Table Background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[100vw] h-screen overflow-hidden pointer-events-none">
-          <div className="absolute top-1/2 -right-1/2 w-[120vw] h-[120vw] flex justify-center items-center menu-table-rotate">
+          <div className={`absolute top-1/2 -right-1/2 w-[120vw] h-[120vw] flex justify-center items-center transition-opacity duration-500 ${tableImageLoaded ? 'opacity-20 menu-table-rotate' : 'opacity-0'}`}>
             <img 
               src="/Menu/table.jpg" 
               alt="Rotating table decoration"
-              className="w-full h-full object-contain opacity-20"
+              className="w-full h-full object-contain"
+              loading="eager"
             />
           </div>
         </div>

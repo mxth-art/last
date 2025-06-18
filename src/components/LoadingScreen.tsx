@@ -12,39 +12,70 @@ const LoadingScreen: React.FC = () => {
   const backdropRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const tl = gsap.timeline();
+    // Preload critical images
+    const preloadImages = [
+      '/IMG_3555-Photoroom.png', // Hero rotating plate
+      '/Menu/table.jpg', // Menu rotating table
+      '/thiruvalluvar wo bg final.png', // Thiruvalluvar statue
+      '/red curtain with welcome .jpg' // Loading screen curtain
+    ];
 
-    tl.set([bgLeftRef.current, bgRightRef.current], { opacity: 0 })
-      .set(textRef.current, { opacity: 0 })
-      .to([bgLeftRef.current, bgRightRef.current], {
-        opacity: 1,
-        duration: 0.4,
-        ease: 'power2.out'
-      })
-      .to(textRef.current, {
-        opacity: 1,
-        duration: 0.4,
-        ease: 'power2.out'
-      }, '-=0.2');
-
-    const timer = setTimeout(() => {
-      const openCurtain = gsap.timeline({
-        onComplete: () => {
-          setTimeout(() => setIsLoading(false), 500);
-        }
+    const imagePromises = preloadImages.map(src => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = resolve;
+        img.onerror = reject;
+        img.src = src;
       });
+    });
 
-      openCurtain
-        .to(textRef.current, { opacity: 0, duration: 0.6, ease: 'power2.out' }) // Adjusted duration
-        .to(bgLeftRef.current, { x: '-50vw', duration: 2.0, ease: 'power2.out' }, '-=0.2') // Adjusted duration
-        .to(bgRightRef.current, { x: '50vw', duration: 2.0, ease: 'power2.out' }, '-=2.0') // Adjusted duration
-        .to([bgLeftRef.current, bgRightRef.current], { opacity: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3') // Adjusted duration
-        .to(curtainLeftRef.current, { scaleX: 0, duration: 2.0, ease: 'power3.inOut' }, '-=0.4') // Adjusted duration
-        .to(curtainRightRef.current, { scaleX: 0, duration: 2.0, ease: 'power3.inOut' }, '-=2.0') // Adjusted duration
-        .to(backdropRef.current, { opacity: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3'); // Adjusted duration
-    }, 1500);
+    // Wait for all critical images to load
+    Promise.all(imagePromises)
+      .then(() => {
+        // Start loading screen animation after images are loaded
+        const tl = gsap.timeline();
 
-    return () => clearTimeout(timer);
+        tl.set([bgLeftRef.current, bgRightRef.current], { opacity: 0 })
+          .set(textRef.current, { opacity: 0 })
+          .to([bgLeftRef.current, bgRightRef.current], {
+            opacity: 1,
+            duration: 0.4,
+            ease: 'power2.out'
+          })
+          .to(textRef.current, {
+            opacity: 1,
+            duration: 0.4,
+            ease: 'power2.out'
+          }, '-=0.2');
+
+        // Minimum loading time to ensure smooth experience
+        const timer = setTimeout(() => {
+          const openCurtain = gsap.timeline({
+            onComplete: () => {
+              setTimeout(() => setIsLoading(false), 300);
+            }
+          });
+
+          openCurtain
+            .to(textRef.current, { opacity: 0, duration: 0.4, ease: 'power2.out' })
+            .to(bgLeftRef.current, { x: '-50vw', duration: 1.5, ease: 'power2.out' }, '-=0.2')
+            .to(bgRightRef.current, { x: '50vw', duration: 1.5, ease: 'power2.out' }, '-=1.5')
+            .to([bgLeftRef.current, bgRightRef.current], { opacity: 0, duration: 0.4, ease: 'power2.out' }, '-=0.3')
+            .to(curtainLeftRef.current, { scaleX: 0, duration: 1.5, ease: 'power3.inOut' }, '-=0.4')
+            .to(curtainRightRef.current, { scaleX: 0, duration: 1.5, ease: 'power3.inOut' }, '-=1.5')
+            .to(backdropRef.current, { opacity: 0, duration: 0.4, ease: 'power2.out' }, '-=0.3');
+        }, 2000); // Reduced from 2500ms to 2000ms
+
+        return () => clearTimeout(timer);
+      })
+      .catch(error => {
+        console.warn('Some images failed to preload:', error);
+        // Still proceed with loading screen even if some images fail
+        const timer = setTimeout(() => {
+          setIsLoading(false);
+        }, 1500);
+        return () => clearTimeout(timer);
+      });
   }, [setIsLoading]);
 
   if (!isLoading) return null;
@@ -85,6 +116,7 @@ const LoadingScreen: React.FC = () => {
               src="/red curtain with welcome .jpg"
               alt="Red Curtain Left"
               className="w-full h-full object-cover object-center"
+              loading="eager"
             />
           </div>
 
@@ -101,16 +133,20 @@ const LoadingScreen: React.FC = () => {
               src="/red curtain with welcome .jpg"
               alt="Red Curtain Right"
               className="w-full h-full object-cover object-center"
+              loading="eager"
             />
           </div>
 
-          {/* Optional Text (add if needed) */}
+          {/* Loading indicator */}
           <div
             ref={textRef}
-            className="absolute inset-0 flex flex-col items-center justify-center px-4 z-10 pointer-events-none text-black text-center text-lg md:text-2xl font-semibold"
+            className="absolute inset-0 flex flex-col items-center justify-center px-4 z-10 pointer-events-none text-black text-center"
           >
-            {/* You can insert a welcome text here if required */}
-            {/* <p>Welcome</p> */}
+            <div className="bg-white/90 backdrop-blur-sm rounded-lg p-6 shadow-lg">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-spice-600 mx-auto mb-4"></div>
+              <p className="text-lg font-medium text-gray-800">Willkommen bei Bay Leaf</p>
+              <p className="text-sm text-gray-600 mt-2">Loading authentic flavors...</p>
+            </div>
           </div>
         </div>
       </div>
